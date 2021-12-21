@@ -10,7 +10,7 @@ export interface SerieInfo {
    type: 'line' | 'bar';
    subType?: 'stacked' | 'grouped';
    name: string;
-   color: Color;
+   color?: Color;
    // goes along with the groupName for axis if you have different series that should go on different axis
    groupName?: string;
    showLabels?: boolean; // if the bar chart has values in the bars

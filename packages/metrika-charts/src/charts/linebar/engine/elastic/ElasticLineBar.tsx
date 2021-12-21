@@ -156,6 +156,7 @@ const ElasticLineBar = (props: LineBarProps) => {
             const seriesProps = {
                key: i,
                id: seriesInfo ? seriesInfo.name : i + '',
+               // todo fix it!!
                color: ChartsPalette[i] || seriesInfo?.color,
                xScaleType: scaleTypeForUnit(format.domainUnit),
                // tickFormat: tickFormat,
