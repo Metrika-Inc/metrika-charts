@@ -1,0 +1,17 @@
+{
+  "private": true,
+  "scripts": {
+    "clean": "node ./scripts/os-clean-all.js",
+    "reset": "yarn run clean && yarn install",
+    "metrika-charts:build": "cd packages/metrika-charts && yarn run build",
+    "metrika-charts:watch": "cd packages/metrika-charts && yarn run watch",
+    "storybook:start": "cd packages/storybook && yarn run storybook",
+    "storybook:build": "cd packages/storybook && yarn run build-storybook"
+  },
+  "workspaces": {
+    "packages": [
+      "packages/metrika-charts",
+      "packages/storybook"
+    ]
+  }
+}

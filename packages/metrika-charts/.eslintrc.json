@@ -1,0 +1,25 @@
+{
+   "root": true,
+   "parser": "@typescript-eslint/parser",
+   "plugins": ["@typescript-eslint"],
+   "extends": [
+      "eslint:recommended",
+      "plugin:@typescript-eslint/recommended",
+      "react-app",
+      "prettier",
+      "plugin:prettier/recommended"
+   ],
+   "rules": {
+      "import/order": [
+         "error",
+         {
+            "groups": ["builtin", "external", "parent", "sibling", "index"],
+            "newlines-between": "never",
+            "alphabetize": {
+               "order": "asc",
+               "caseInsensitive": true
+            }
+         }
+      ]
+   }
+}
