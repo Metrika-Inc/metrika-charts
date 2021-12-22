@@ -1,4 +1,4 @@
-import { Chart, PointerEvent } from '@metrika/charts';
+import { Chart, PointerEvent } from '@metrika/elastic-charts';
 import { RefObject } from 'react';
 
 export class EventsBus {

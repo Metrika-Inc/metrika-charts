@@ -1,5 +1,5 @@
-import { RecursivePartial } from '@metrika/charts';
-import { Config } from '@metrika/charts/dist/chart_types/heatmap/layout/types/config_types';
+import { RecursivePartial } from '@metrika/elastic-charts';
+import { Config } from '@metrika/elastic-charts/dist/chart_types/heatmap/layout/types/config_types';
 
 type HeatmapConfg = RecursivePartial<Config>;
 

@@ -1,4 +1,4 @@
-import { PartialTheme } from '@metrika/charts';
+import { PartialTheme } from '@metrika/elastic-charts';
 import { palettes } from './palette';
 
 type ColorMaker = (x: number) => string;

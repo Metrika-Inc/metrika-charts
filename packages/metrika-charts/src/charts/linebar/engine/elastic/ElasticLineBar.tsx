@@ -12,7 +12,7 @@ import {
    RecursivePartial,
    LineSeriesStyle,
    Datum,
-} from '@metrika/charts';
+} from '@metrika/elastic-charts';
 import React from 'react';
 import { useTheme } from '../../../../_shared';
 import { useElasticSyncTooltips } from '../../../../_shared';

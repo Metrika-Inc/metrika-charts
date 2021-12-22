@@ -1,4 +1,4 @@
-import { Datum } from '@metrika/charts';
+import { Datum } from '@metrika/elastic-charts';
 import { formatForRange, formattersForTypes } from '../../../../_shared/format/formatting';
 import { Unit } from '../../../../_shared/types/units';
 import { Serie } from '../../data';

@@ -1,4 +1,4 @@
-import { timeFormatter } from '@metrika/charts';
+import { timeFormatter } from '@metrika/elastic-charts';
 import * as d3 from 'd3-format';
 
 const hoursCutoff = 1000 * 60 * 60 * 24; // 1 day

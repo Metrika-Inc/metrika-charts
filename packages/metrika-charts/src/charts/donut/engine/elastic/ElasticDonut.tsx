@@ -1,4 +1,4 @@
-import { Chart, Position, Settings, Partition, Datum, PartitionLayout } from '@metrika/charts';
+import { Chart, Position, Settings, Partition, Datum, PartitionLayout } from '@metrika/elastic-charts';
 import React from 'react';
 import { DonutProps } from '../../data';
 import { indexInterpolatedFillColor, interpolatorCET2s, STORYBOOK_LIGHT_THEME } from './colors';
