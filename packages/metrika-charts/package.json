@@ -6,7 +6,7 @@
   "type": "module",
   "main": "build/index.js",
   "module": "build/index.js",
-  "types": "buind/index.d.ts",
+  "types": "build/index.d.ts",
   "scripts": {
     "build:clean": "rimraf build",
     "build:es6": "tsc -p tsconfig.json",

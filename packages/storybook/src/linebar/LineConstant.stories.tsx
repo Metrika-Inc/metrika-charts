@@ -1,10 +1,10 @@
 import React from 'react';
 import { ComponentStory, ComponentMeta } from '@storybook/react';
-import { engines, MetrikaLineBar } from '@metrika/metrika-charts';
+import { MetrikaLineBarProps, MetrikaLineBar } from '@metrika/metrika-charts';
 import { LineBarMock5 } from './mocks';
 import { ChartWrapper } from '../_shared/ChartWrapper';
 
-const Line: React.FC<{ engine: keyof typeof engines }> = ({ engine }) => {
+const Line: React.FC<{ engine: MetrikaLineBarProps["engine"] }> = ({ engine }) => {
    return (
       <ChartWrapper>
          <MetrikaLineBar engine={engine} {...LineBarMock5} />
@@ -17,7 +17,7 @@ export default {
    component: Line,
    argTypes: {
       engine: {
-         options: Object.keys(engines),
+         options: MetrikaLineBar.engines,
          control: { type: 'radio' },
       }
    }

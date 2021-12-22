@@ -11,11 +11,22 @@ export interface MetrikaHeatmapProps extends HeatmapProps {
    fallback?: SuspenseProps['fallback'];
 }
 
-export const MetrikaHeatmap: React.FC<MetrikaHeatmapProps> = ({ fallback, engine, data, meta }) => {
+export const MetrikaHeatmap: React.FC<MetrikaHeatmapProps> & { engines: Array<keyof typeof engines> } = ({
+   fallback,
+   engine,
+   data,
+   meta,
+}) => {
    const Engine = engines[engine];
    return (
-      <Suspense fallback={null}>
+      <Suspense fallback={fallback || null}>
          <Engine data={data} meta={meta} />
       </Suspense>
    );
 };
+
+MetrikaHeatmap.defaultProps = {
+   engine: 'elastic',
+};
+
+MetrikaHeatmap.engines = Object.keys(engines) as Array<keyof typeof engines>;

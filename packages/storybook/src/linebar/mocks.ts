@@ -1,5 +1,5 @@
 import { LineBarData, LineBarProps } from '@metrika/metrika-charts/build/charts/linebar/data';
-import { metrikaTheme } from "@metrika/metrika-charts/build";
+import { metrikaTheme } from "@metrika/metrika-charts";
 
 const data: LineBarData = [
    [

@@ -8,7 +8,7 @@
                 <rect id="Rectangle" fill="#1BA9F5" transform="translate(32.500000, 56.000000) scale(-1, 1) translate(-32.500000, -56.000000) " x="23" y="36" width="19" height="36" rx="8"></rect>
                 <rect id="Rectangle" fill="#F04E98" transform="translate(9.500000, 61.000000) scale(-1, 1) translate(-9.500000, -61.000000) " x="0" y="0" width="19" height="72" rx="8"></rect>
             </g>
-            <text id="Elastic-Charts" font-family="IBM Plex Mono" font-size="40" font-weight="bold" fill="#3B3B3B">
+            <text id="Elastic-Charts" font-family="monospace" font-size="36" font-weight="bold" fill="#3B3B3B">
                 <tspan x="100" y="66">Metrika-Charts</tspan>
             </text>
         </g>

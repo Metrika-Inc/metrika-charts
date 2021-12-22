@@ -1,9 +1,9 @@
 import { ComponentStory, ComponentMeta } from '@storybook/react';
-import { engines, MetrikaLineBar } from '@metrika/metrika-charts';
+import { MetrikaLineBarProps, MetrikaLineBar } from '@metrika/metrika-charts';
 import { LineBarMock42 } from "./mocks";
 import { ChartWrapper } from '../_shared/ChartWrapper';
 
-const LineBar: React.FC<{ engine: keyof typeof engines }> = ({ engine }) => {
+const LineBar: React.FC<{ engine: MetrikaLineBarProps["engine"] }> = ({ engine }) => {
   return (
     <ChartWrapper>
       <MetrikaLineBar engine={engine} {...LineBarMock42} />
