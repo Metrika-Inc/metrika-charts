@@ -1,4 +1,4 @@
-import { Chart, PointerUpdateTrigger } from '@metrika/charts';
+import { Chart, PointerUpdateTrigger } from '@metrika/elastic-charts';
 import React, { useEffect, useMemo } from 'react';
 import { useEventsBus } from './context';
 

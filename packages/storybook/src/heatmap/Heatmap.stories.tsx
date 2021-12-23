@@ -1,6 +1,6 @@
 import React from 'react';
 import { ComponentStory, ComponentMeta } from '@storybook/react';
-import { MetrikaHeatmap } from '@metrika/metrika-charts/build';
+import { MetrikaHeatmap } from '@metrika/metrika-charts';
 import { mock } from './mocks';
 import { ChartWrapper } from '../_shared/ChartWrapper';
 

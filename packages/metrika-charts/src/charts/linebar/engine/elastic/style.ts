@@ -1,4 +1,4 @@
-import { GridLineStyle, PartialTheme } from '@metrika/charts';
+import { GridLineStyle, PartialTheme } from '@metrika/elastic-charts';
 
 export const gridStyle: Partial<GridLineStyle> = {
    visible: true,

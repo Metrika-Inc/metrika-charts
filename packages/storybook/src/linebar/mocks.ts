@@ -1,4 +1,5 @@
 import { LineBarData, LineBarProps } from '@metrika/metrika-charts/build/charts/linebar/data';
+import { metrikaTheme } from "@metrika/metrika-charts";
 
 const data: LineBarData = [
    [
@@ -230,7 +231,6 @@ export const LineBarMock1: LineBarProps = {
    },
    data,
 };
-
 export const LineBarMock2: LineBarProps = {
    meta: {
       domainUnit: 'datetime',
@@ -260,7 +260,6 @@ export const LineBarMock2: LineBarProps = {
    },
    data,
 };
-
 export const LineBarMock3: LineBarProps = {
    meta: {
       domainUnit: 'datetime',
@@ -292,7 +291,6 @@ export const LineBarMock3: LineBarProps = {
    },
    data,
 };
-
 export const LineBarMock4: LineBarProps = {
    meta: {
       domainUnit: 'datetime',
@@ -336,7 +334,7 @@ export const LineBarMock41: LineBarProps = {
             type: 'line',
             name: 'Receiver Count',
             color: '#8DCFF2',
-            groupName:"y2"
+            groupName: 'y2',
          },
       },
       axes: [
@@ -352,7 +350,7 @@ export const LineBarMock41: LineBarProps = {
             position: 'right',
             displayUnit: 'number',
             gridLines: false,
-            groupName:"y2"
+            groupName: 'y2',
          },
       ],
    },
@@ -366,12 +364,12 @@ export const LineBarMock5: LineBarProps = {
          total_online_voting_stake_percentage: {
             type: 'line',
             name: 'Online voting stake',
-            color: '#3096D8'
-         }
+            color: '#3096D8',
+         },
       },
       axes: [
          {
-            position: 'bottom'
+            position: 'bottom',
          },
          {
             position: 'left',
@@ -379,113 +377,185 @@ export const LineBarMock5: LineBarProps = {
             gridLines: true,
             domain: {
                fit: true,
-               padPercent: 0.01
-            }
-         }
-      ]
+               padPercent: 0.01,
+            },
+         },
+      ],
    },
    data: [
       [
-         [
-            1639954800000,
-            0.9800000190734863
-         ],
-         [
-            1639958400000,
-            0.9800000190734863
-         ],
-         [
-            1639962000000,
-            0.9800000190734863
-         ],
-         [
-            1639965600000,
-            0.9800000190734863
-         ],
-         [
-            1639969200000,
-            0.9800000190734863
-         ],
-         [
-            1639972800000,
-            0.9800000190734863
-         ],
-         [
-            1639976400000,
-            0.9800000190734863
-         ],
-         [
-            1639980000000,
-            0.9800000190734863
-         ],
-         [
-            1639983600000,
-            0.9800000190734863
-         ],
-         [
-            1639987200000,
-            0.9800000190734863
-         ],
-         [
-            1639990800000,
-            0.9800000190734863
-         ],
-         [
-            1639994400000,
-            0.9800000190734863
-         ],
-         [
-            1639998000000,
-            0.9800000190734863
-         ],
-         [
-            1640001600000,
-            0.9800000190734863
-         ],
-         [
-            1640005200000,
-            0.9800000190734863
-         ],
-         [
-            1640008800000,
-            0.9800000190734863
-         ],
-         [
-            1640012400000,
-            0.9800000190734863
-         ],
-         [
-            1640016000000,
-            0.9800000190734863
-         ],
-         [
-            1640019600000,
-            0.9800000190734863
-         ],
-         [
-            1640023200000,
-            0.9800000190734863
-         ],
-         [
-            1640026800000,
-            0.9800000190734863
-         ],
-         [
-            1640030400000,
-            0.9800000190734863
-         ],
-         [
-            1640034000000,
-            0.9800000190734863
-         ],
-         [
-            1640037600000,
-            0.9800000190734863
-         ],
-         [
-            1640041200000,
-            0.9800000190734863
-         ]
-      ]
+         [1639954800000, 0.9800000190734863],
+         [1639958400000, 0.9800000190734863],
+         [1639962000000, 0.9800000190734863],
+         [1639965600000, 0.9800000190734863],
+         [1639969200000, 0.9800000190734863],
+         [1639972800000, 0.9800000190734863],
+         [1639976400000, 0.9800000190734863],
+         [1639980000000, 0.9800000190734863],
+         [1639983600000, 0.9800000190734863],
+         [1639987200000, 0.9800000190734863],
+         [1639990800000, 0.9800000190734863],
+         [1639994400000, 0.9800000190734863],
+         [1639998000000, 0.9800000190734863],
+         [1640001600000, 0.9800000190734863],
+         [1640005200000, 0.9800000190734863],
+         [1640008800000, 0.9800000190734863],
+         [1640012400000, 0.9800000190734863],
+         [1640016000000, 0.9800000190734863],
+         [1640019600000, 0.9800000190734863],
+         [1640023200000, 0.9800000190734863],
+         [1640026800000, 0.9800000190734863],
+         [1640030400000, 0.9800000190734863],
+         [1640034000000, 0.9800000190734863],
+         [1640037600000, 0.9800000190734863],
+         [1640041200000, 0.9800000190734863],
+      ],
    ],
+};
+
+const data2 = [
+   {
+      '@timestamp': '2021-12-20T00:00:00.000Z',
+      total_transactions: 10000,
+      incoming_node_fee: 2,
+      incoming_transfer: 10,
+      incoming_network_fee: 5,
+   },
+   {
+      '@timestamp': '2021-12-19T00:00:00.000Z',
+      total_transactions: 8000,
+      incoming_node_fee: 1,
+      incoming_transfer: 50,
+      incoming_network_fee: 6,
+   },
+   {
+      '@timestamp': '2021-12-18T00:00:00.000Z',
+      total_transactions: 10000,
+      incoming_node_fee: 4,
+      incoming_transfer: 33,
+      incoming_network_fee: 5,
+   },
+   {
+      '@timestamp': '2021-12-17T00:00:00.000Z',
+      total_transactions: 5000,
+      incoming_node_fee: 3,
+      incoming_transfer: 9,
+      incoming_network_fee: 4,
+   },
+   {
+      '@timestamp': '2021-12-16T00:00:00.000Z',
+      total_transactions: 20000,
+      incoming_node_fee: 2,
+      incoming_transfer: 24,
+      incoming_network_fee: 5,
+   },
+   {
+      '@timestamp': '2021-12-15T00:00:00.000Z',
+      total_transactions: 15000,
+      incoming_node_fee: 2,
+      incoming_transfer: 10,
+      incoming_network_fee: 5,
+   },
+   {
+      '@timestamp': '2021-12-14T00:00:00.000Z',
+      total_transactions: 1000,
+      incoming_node_fee: 1,
+      incoming_transfer: 35,
+      incoming_network_fee: 4,
+   },
+   {
+      '@timestamp': '2021-12-13T00:00:00.000Z',
+      total_transactions: 100,
+      incoming_node_fee: 3,
+      incoming_transfer: 33,
+      incoming_network_fee: 3,
+   },
+   {
+      '@timestamp': '2021-12-12T00:00:00.000Z',
+      total_transactions: 70000,
+      incoming_node_fee: 1,
+      incoming_transfer: 15,
+      incoming_network_fee: 6,
+   },
+   {
+      '@timestamp': '2021-12-11T00:00:00.000Z',
+      total_transactions: 4000,
+      incoming_node_fee: 2,
+      incoming_transfer: 73,
+      incoming_network_fee: 7,
+   },
+   {
+      '@timestamp': '2021-12-10T00:00:00.000Z',
+      total_transactions: 30000,
+      incoming_node_fee: 1,
+      incoming_transfer: 23,
+      incoming_network_fee: 4,
+   },
+   {
+      '@timestamp': '2021-12-09T00:00:00.000Z',
+      total_transactions: 10000,
+      incoming_node_fee: 1,
+      incoming_transfer: 15,
+      incoming_network_fee: 5,
+   },
+   {
+      '@timestamp': '2021-12-08T00:00:00.000Z',
+      total_transactions: 25000,
+      incoming_node_fee: 2,
+      incoming_transfer: 10,
+      incoming_network_fee: 4,
+   },
+];
+const data3: LineBarData = [
+   data2.reverse().map((d) => [new Date(d['@timestamp']).getTime(), d.total_transactions]),
+   data2.reverse().map((d) => [new Date(d['@timestamp']).getTime(), d.incoming_node_fee]),
+   data2.reverse().map((d) => [new Date(d['@timestamp']).getTime(), d.incoming_transfer]),
+   data2.reverse().map((d) => [new Date(d['@timestamp']).getTime(), d.incoming_network_fee]),
+];
+
+export const LineBarMock42: LineBarProps = {
+   meta: {
+      domainUnit: 'datetime',
+      seriesId: ['total_transactions','incoming_node_fee', 'incoming_transfer','incoming_network_fee'],
+      seriesInfo: {
+         total_transactions: {
+            type: 'line',
+            name: 'Total transactions',
+            color: metrikaTheme.data.colors[1],
+            groupName: 'y2'
+         },
+         incoming_node_fee: {
+            type: 'bar',
+            name: 'Incoming node fee',
+            color: metrikaTheme.data.colors[0],
+         },
+         incoming_transfer: {
+            type: 'bar',
+            name: 'Incoming transfer',
+            color: metrikaTheme.data.colors[2],
+         },
+         incoming_network_fee: {
+            type: 'bar',
+            name: 'Incoming network fee',
+            color: metrikaTheme.data.colors[3],
+         },
+      },
+      axes: [
+         {
+            position: 'bottom',
+         },
+         {
+            position: 'left',
+            displayUnit: 'number',
+            gridLines: false,
+         },
+         {
+            position: 'right',
+            displayUnit: 'number',
+            gridLines: false,
+            groupName: 'y2',
+         },
+      ],
+   },
+   data: data3,
 };

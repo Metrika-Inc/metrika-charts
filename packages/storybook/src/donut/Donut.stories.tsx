@@ -1,7 +1,7 @@
 import React from 'react';
 import { ComponentStory, ComponentMeta } from '@storybook/react';
 import { ChartWrapper } from '../_shared/ChartWrapper';
-import { MetrikaDonut } from '@metrika/metrika-charts/build/charts/donut/Donut';
+import { MetrikaDonut } from '@metrika/metrika-charts';
 import { mock1 } from './mocks';
 
 const Donut = (props: { showLabels: boolean }) => {

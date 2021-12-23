@@ -1,4 +1,4 @@
-import { Position, Rotation } from '@metrika/charts';
+import { Position, Rotation } from '@metrika/elastic-charts';
 
 export const calcChartRotation = (domainSide: Position | undefined): Rotation => {
    switch (domainSide) {

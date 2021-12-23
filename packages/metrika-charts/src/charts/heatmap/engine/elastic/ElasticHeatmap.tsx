@@ -1,5 +1,5 @@
-import { Chart as MetrikaChart, Heatmap, RecursivePartial, ScaleType, Settings } from '@metrika/charts';
-import { Config } from '@metrika/charts/dist/chart_types/heatmap/layout/types/config_types';
+import { Chart as MetrikaChart, Heatmap, RecursivePartial, ScaleType, Settings } from '@metrika/elastic-charts';
+import { Config } from '@metrika/elastic-charts/dist/chart_types/heatmap/layout/types/config_types';
 import * as merge from 'deepmerge';
 import React, { useMemo } from 'react';
 import { formatForRange, formattersForTypes } from '../../../../_shared/format/formatting';

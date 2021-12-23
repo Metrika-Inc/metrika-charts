@@ -1,4 +1,4 @@
-import { PartialTheme } from '@metrika/charts';
+import { PartialTheme } from '@metrika/elastic-charts';
 import { palettes } from './palette';
 
 type ColorMaker = (x: number) => string;
@@ -15,17 +15,4 @@ export function hueInterpolator(colors: any[]) {
 }
 export const interpolatorCET2s = hueInterpolator(palettes.CET2s.map(([r, g, b]) => [r, g, b, 0.8]));
 
-export const STORYBOOK_LIGHT_THEME: PartialTheme = {
-   background: {
-      color: '#FFF', // $euiColorEmptyShade;
-   },
-   legend: {
-      margin: 20,
-      spacingBuffer: 50,
-   },
-   chartMargins: {
-      right: 20,
-      top: 20,
-      bottom: 20,
-   },
-};
+

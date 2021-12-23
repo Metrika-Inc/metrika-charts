@@ -12,11 +12,22 @@ export interface MetrikaDonutProps extends DonutProps {
    fallback?: SuspenseProps['fallback'];
 }
 
-export const MetrikaDonut: React.FC<MetrikaDonutProps> = ({ fallback, engine, data, meta }) => {
+export const MetrikaDonut: React.FC<MetrikaDonutProps> & { engines: Array<keyof typeof engines> } = ({
+   fallback,
+   engine,
+   data,
+   meta,
+}) => {
    const Engine = engines[engine];
    return (
-      <Suspense fallback={null}>
+      <Suspense fallback={fallback || null}>
          <Engine data={data} meta={meta} />
       </Suspense>
    );
 };
+
+MetrikaDonut.defaultProps = {
+   engine: 'elastic',
+};
+
+MetrikaDonut.engines = Object.keys(engines) as Array<keyof typeof engines>;

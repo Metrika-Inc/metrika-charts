@@ -1,8 +1,18 @@
-import { Datum } from '@metrika/charts';
+import { Datum, ScaleType, XScaleType } from '@metrika/elastic-charts';
 import { formatForRange, formattersForTypes } from '../../../../_shared/format/formatting';
 import { Unit } from '../../../../_shared/types/units';
 import { Serie } from '../../data';
 
+// handles the scale type for the x axis
+export const scaleTypeForUnit = (unit: Unit): XScaleType => {
+   if (unit === 'datetime') {
+      return ScaleType.Time;
+   }
+   if (unit === 'number' || unit === 'percent') {
+      return ScaleType.Linear;
+   }
+   return ScaleType.Ordinal;
+};
 /**
  * Used to determine the formatting function for a given unit
  * The datetime unit takes into account the time range of the data

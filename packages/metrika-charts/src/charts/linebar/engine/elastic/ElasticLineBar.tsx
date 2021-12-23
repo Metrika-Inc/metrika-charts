@@ -7,47 +7,43 @@ import {
    Position,
    ScaleType,
    Settings,
-   XScaleType,
    TickFormatter,
    RecursivePartial,
    LineSeriesStyle,
    Datum,
-} from '@metrika/charts';
+} from '@metrika/elastic-charts';
 import React from 'react';
 import { useTheme } from '../../../../_shared';
 import { useElasticSyncTooltips } from '../../../../_shared';
 import { formattersForTypes } from '../../../../_shared/format/formatting';
-import { Unit } from '../../../../_shared/types/units';
 import { LineBarProps } from '../../data';
-import { formatForUnit } from './format';
+import { formatForUnit, scaleTypeForUnit } from './format';
 import { calcChartRotation, sameSide } from './rotation';
 import { chartTheme, gridStyle } from './style';
 
-const ElasticLineBar = (props: LineBarProps) => {
+const ElasticLineBar = ({ data, meta }: LineBarProps) => {
    const { ref, elasticXYEventsProps } = useElasticSyncTooltips({ enabled: true, visible: true });
 
    const ChartsPalette = useTheme().data.colors;
 
-   const { meta: format, data } = props;
-
-   if (format === undefined) {
+   if (meta === undefined) {
       return null;
    }
 
    const groups = new Set<string | undefined>();
-   format.seriesId.forEach((id) => {
-      if (format.seriesInfo) {
-         if (format.seriesInfo[id])
+   meta.seriesId.forEach((id) => {
+      if (meta.seriesInfo) {
+         if (meta.seriesInfo[id])
             //todo matt check if ok
-            groups.add(format.seriesInfo[id].groupName);
+            groups.add(meta.seriesInfo[id].groupName);
       }
    });
 
    const axisDomainGroups = groups;
-   const axes = format.axes?.map((axis, i) => {
+   const axes = meta.axes?.map((axis, i) => {
       let tickFormat: TickFormatter<Datum> | undefined = undefined;
       let labelFormat: TickFormatter<Datum> | undefined = undefined;
-      const domainSide = format.domainSide || 'bottom';
+      const domainSide = meta.domainSide || 'bottom';
 
       let domain: YDomainRange | undefined = undefined;
 
@@ -55,7 +51,7 @@ const ElasticLineBar = (props: LineBarProps) => {
       if (sameSide(axis.position, domainSide)) {
          axisDomainGroups.delete(axis.groupName);
 
-         tickFormat = formatForUnit(format.domainUnit, data);
+         tickFormat = formatForUnit(meta.domainUnit, data);
       } else {
          if (axis.domain) {
             domain = { fit: axis.domain.fit, min: axis.domain.min, max: axis.domain.max };
@@ -106,8 +102,8 @@ const ElasticLineBar = (props: LineBarProps) => {
    // so we keep track of which groups get axes that define their domain formatting,
    // and then we create hidden axis for the rest
    axisDomainGroups.forEach((groupId, i) => {
-      const domainSide = format.domainSide || 'bottom';
-      const tickFormat = formatForUnit(format.domainUnit, data);
+      const domainSide = meta.domainSide || 'bottom';
+      const tickFormat = formatForUnit(meta.domainUnit, data);
 
       axes?.push(
          <Axis
@@ -121,17 +117,6 @@ const ElasticLineBar = (props: LineBarProps) => {
       );
    });
 
-   // handles the scale type for the x axis
-   const scaleTypeForUnit = (unit: Unit): XScaleType => {
-      if (unit === 'datetime') {
-         return ScaleType.Time;
-      }
-      if (unit === 'number' || unit === 'percent') {
-         return ScaleType.Linear;
-      }
-      return ScaleType.Ordinal;
-   };
-
    const chartHasData = data.reduce((hasData, serie) => hasData && serie.length > 0, true);
 
    return (
@@ -140,13 +125,13 @@ const ElasticLineBar = (props: LineBarProps) => {
             showLegend
             theme={chartTheme}
             legendPosition={Position.Top}
-            rotation={calcChartRotation(format.domainSide)}
+            rotation={calcChartRotation(meta.domainSide)}
             {...elasticXYEventsProps}
          />
          {chartHasData && axes}
          {data.map((series, i) => {
-            const seriesId = format.seriesId[i];
-            const seriesInfo = format.seriesInfo ? format.seriesInfo[seriesId] : null;
+            const seriesId = meta.seriesId[i];
+            const seriesInfo = meta.seriesInfo ? meta.seriesInfo[seriesId] : null;
 
             const accessors = {
                xAccessor: 0,
@@ -156,8 +141,9 @@ const ElasticLineBar = (props: LineBarProps) => {
             const seriesProps = {
                key: i,
                id: seriesInfo ? seriesInfo.name : i + '',
+               // todo fix it!!
                color: ChartsPalette[i] || seriesInfo?.color,
-               xScaleType: scaleTypeForUnit(format.domainUnit),
+               xScaleType: scaleTypeForUnit(meta.domainUnit),
                // tickFormat: tickFormat,
                yScaleType: ScaleType.Linear,
                ...accessors,
