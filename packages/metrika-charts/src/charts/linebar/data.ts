@@ -4,7 +4,9 @@ import { Unit } from '../../_shared/types/units';
 
 export type Point<X = number, Y = number> = [X, Y];
 
-export type Serie = Point[]; // array of (x, y) pairs
+export type Serie = Point[];
+
+export type LineBarData = Serie[];
 
 export interface SerieInfo {
    type: 'line' | 'bar';
@@ -40,8 +42,6 @@ export interface LineBarMeta {
    seriesId: Id[]; // Each element corresponds to `data` by index
    seriesInfo: Record<Id, SerieInfo>;
 }
-
-export type LineBarData = Serie[];
 
 export interface LineBarProps {
    data: LineBarData;
