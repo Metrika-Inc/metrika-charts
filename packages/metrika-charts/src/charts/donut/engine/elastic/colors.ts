@@ -14,5 +14,3 @@ export function hueInterpolator(colors: any[]) {
    };
 }
 export const interpolatorCET2s = hueInterpolator(palettes.CET2s.map(([r, g, b]) => [r, g, b, 0.8]));
-
-

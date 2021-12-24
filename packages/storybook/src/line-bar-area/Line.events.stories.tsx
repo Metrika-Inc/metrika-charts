@@ -1,17 +1,17 @@
 import React from 'react';
 import { ComponentStory, ComponentMeta } from '@storybook/react';
-import { MetrikaLineBarProps, MetrikaLineBar } from '@metrika/metrika-charts';
+import { MetrikaLineBarAreaProps, MetrikaLineBarArea } from '@metrika/metrika-charts';
 import { LineBarMock1 } from './mocks';
 import { ChartWrapper } from '../_shared/ChartWrapper';
 
-const LineEvents: React.FC<{ engine: MetrikaLineBarProps["engine"] }> = ({ engine }) => {
+const LineEvents: React.FC<{ engine: MetrikaLineBarAreaProps["engine"] }> = ({ engine }) => {
    return (
       <>
          <ChartWrapper>
-            <MetrikaLineBar engine={engine} {...LineBarMock1} />
+            <MetrikaLineBarArea engine={engine} {...LineBarMock1} />
          </ChartWrapper>
          <ChartWrapper>
-            <MetrikaLineBar engine={engine} {...LineBarMock1} />
+            <MetrikaLineBarArea engine={engine} {...LineBarMock1} />
          </ChartWrapper>
       </>
    );
@@ -22,7 +22,7 @@ export default {
    component: LineEvents,
    argTypes: {
       engine: {
-         options: MetrikaLineBar.engines,
+         options: MetrikaLineBarArea.engines,
          control: { type: 'radio' },
       },
    },

@@ -1,7 +1,7 @@
-import { LineBarData, LineBarProps } from '@metrika/metrika-charts/build/charts/linebar/data';
-import { metrikaTheme } from "@metrika/metrika-charts";
+import { metrikaTheme } from '@metrika/metrika-charts';
+import { LineBarAreaData, LineBarAreaProps } from '@metrika/metrika-charts/build/charts/line-bar-area/data';
 
-const data: LineBarData = [
+const data: LineBarAreaData = [
    [
       [1636965000000, 3054],
       [1636965900000, 3588],
@@ -202,7 +202,7 @@ const data: LineBarData = [
    ],
 ];
 
-export const LineBarMock1: LineBarProps = {
+export const LineBarMock1: LineBarAreaProps = {
    meta: {
       domainUnit: 'datetime',
       seriesId: ['sender_count', 'receiver_count'],
@@ -231,7 +231,7 @@ export const LineBarMock1: LineBarProps = {
    },
    data,
 };
-export const LineBarMock2: LineBarProps = {
+export const LineBarMock2: LineBarAreaProps = {
    meta: {
       domainUnit: 'datetime',
       seriesId: ['sender_count', 'receiver_count'],
@@ -260,7 +260,7 @@ export const LineBarMock2: LineBarProps = {
    },
    data,
 };
-export const LineBarMock3: LineBarProps = {
+export const LineBarMock3: LineBarAreaProps = {
    meta: {
       domainUnit: 'datetime',
       seriesId: ['sender_count', 'receiver_count'],
@@ -291,7 +291,7 @@ export const LineBarMock3: LineBarProps = {
    },
    data,
 };
-export const LineBarMock4: LineBarProps = {
+export const LineBarMock4: LineBarAreaProps = {
    meta: {
       domainUnit: 'datetime',
       seriesId: ['sender_count', 'receiver_count'],
@@ -320,7 +320,7 @@ export const LineBarMock4: LineBarProps = {
    },
    data,
 };
-export const LineBarMock41: LineBarProps = {
+export const LineBarMock41: LineBarAreaProps = {
    meta: {
       domainUnit: 'datetime',
       seriesId: ['sender_count', 'receiver_count'],
@@ -356,7 +356,7 @@ export const LineBarMock41: LineBarProps = {
    },
    data,
 };
-export const LineBarMock5: LineBarProps = {
+export const LineBarMock5: LineBarAreaProps = {
    meta: {
       domainUnit: 'datetime',
       seriesId: ['total_online_voting_stake_percentage'],
@@ -506,23 +506,23 @@ const data2 = [
       incoming_network_fee: 4,
    },
 ];
-const data3: LineBarData = [
+const data3: LineBarAreaData = [
    data2.reverse().map((d) => [new Date(d['@timestamp']).getTime(), d.total_transactions]),
    data2.reverse().map((d) => [new Date(d['@timestamp']).getTime(), d.incoming_node_fee]),
    data2.reverse().map((d) => [new Date(d['@timestamp']).getTime(), d.incoming_transfer]),
    data2.reverse().map((d) => [new Date(d['@timestamp']).getTime(), d.incoming_network_fee]),
 ];
 
-export const LineBarMock42: LineBarProps = {
+export const LineBarMock42: LineBarAreaProps = {
    meta: {
       domainUnit: 'datetime',
-      seriesId: ['total_transactions','incoming_node_fee', 'incoming_transfer','incoming_network_fee'],
+      seriesId: ['total_transactions', 'incoming_node_fee', 'incoming_transfer', 'incoming_network_fee'],
       seriesInfo: {
          total_transactions: {
             type: 'line',
             name: 'Total transactions',
             color: metrikaTheme.data.colors[1],
-            groupName: 'y2'
+            groupName: 'y2',
          },
          incoming_node_fee: {
             type: 'bar',
@@ -558,4 +558,148 @@ export const LineBarMock42: LineBarProps = {
       ],
    },
    data: data3,
+};
+
+// area
+const rawAreaData = [
+   { '@timestamp': '2021-12-18T00:00:00.000Z', node: '0.0.3', transactions: 100 },
+   { '@timestamp': '2021-12-18T00:00:00.000Z', node: 'Rest of Network', transactions: 2000 },
+   { '@timestamp': '2021-12-17T00:00:00.000Z', node: '0.0.3', transactions: 240 },
+   { '@timestamp': '2021-12-17T00:00:00.000Z', node: 'Rest of Network', transactions: 2000 },
+   { '@timestamp': '2021-12-16T00:00:00.000Z', node: '0.0.3', transactions: 210 },
+   { '@timestamp': '2021-12-16T00:00:00.000Z', node: 'Rest of Network', transactions: 2000 },
+   { '@timestamp': '2021-12-15T00:00:00.000Z', node: '0.0.3', transactions: 120 },
+   { '@timestamp': '2021-12-15T00:00:00.000Z', node: 'Rest of Network', transactions: 2000 },
+   { '@timestamp': '2021-12-14T00:00:00.000Z', node: '0.0.3', transactions: 310 },
+   { '@timestamp': '2021-12-14T00:00:00.000Z', node: 'Rest of Network', transactions: 2000 },
+   { '@timestamp': '2021-12-13T00:00:00.000Z', node: '0.0.3', transactions: 190 },
+   { '@timestamp': '2021-12-13T00:00:00.000Z', node: 'Rest of Network', transactions: 2000 },
+   { '@timestamp': '2021-12-12T00:00:00.000Z', node: '0.0.3', transactions: 410 },
+   { '@timestamp': '2021-12-12T00:00:00.000Z', node: 'Rest of Network', transactions: 2000 },
+   { '@timestamp': '2021-12-11T00:00:00.000Z', node: '0.0.3', transactions: 220 },
+   { '@timestamp': '2021-12-11T00:00:00.000Z', node: 'Rest of Network', transactions: 2000 },
+   { '@timestamp': '2021-12-10T00:00:00.000Z', node: '0.0.3', transactions: 320 },
+   { '@timestamp': '2021-12-10T00:00:00.000Z', node: 'Rest of Network', transactions: 2000 },
+   { '@timestamp': '2021-12-09T00:00:00.000Z', node: '0.0.3', transactions: 180 },
+   { '@timestamp': '2021-12-09T00:00:00.000Z', node: 'Rest of Network', transactions: 2000 },
+];
+
+const dataMockArea: LineBarAreaData = [
+   rawAreaData
+      .reverse()
+      .filter((d) => d.node === '0.0.3')
+      .map((d) => [new Date(d['@timestamp']).getTime(), d.transactions]),
+   rawAreaData
+      .reverse()
+      .filter((d) => d.node === '0.0.3')
+      .map((d) => [new Date(d['@timestamp']).getTime(), d.transactions]),
+   rawAreaData
+      .reverse()
+      .filter((d) => d.node === 'Rest of Network')
+      .map((d) => [new Date(d['@timestamp']).getTime(), d.transactions]),
+];
+
+export const LineBarMockArea: LineBarAreaProps = {
+   meta: {
+      domainUnit: 'datetime',
+      seriesId: ['0.0.3', '0.0.4','Rest of Network'],
+      seriesInfo: {
+         '0.0.3': {
+            type: 'area',
+            subType: "stacked",
+            stackMode: "percentage",
+            name: '0.0.3',
+         },
+         '0.0.4': {
+            type: 'area',
+            subType: "stacked",
+            stackMode: "percentage",
+            name: '0.0.4',
+         },
+         'Rest of Network': {
+            type: 'area',
+            subType: "stacked",
+            stackMode: "percentage",
+            name: 'Rest of Network',
+         },
+      },
+      axes: [
+         {
+            position: 'bottom',
+         },
+         {
+            position: 'left',
+            displayUnit: 'percent',
+            gridLines: true,
+         },
+      ],
+   },
+   data: dataMockArea,
+};
+
+export const LineBarMockArea2: LineBarAreaProps = {
+   meta: {
+      domainUnit: 'datetime',
+      seriesId: ['0.0.3', '0.0.4','Rest of Network'],
+      seriesInfo: {
+         '0.0.3': {
+            type: 'area',
+            subType: "stacked",
+            name: '0.0.3',
+         },
+         '0.0.4': {
+            type: 'area',
+            subType: "stacked",
+            name: '0.0.4',
+         },
+         'Rest of Network': {
+            type: 'area',
+            subType: "stacked",
+            name: 'Rest of Network',
+         },
+      },
+      axes: [
+         {
+            position: 'bottom',
+         },
+         {
+            position: 'left',
+            displayUnit: 'number',
+            gridLines: true,
+         },
+      ],
+   },
+   data: dataMockArea,
+};
+
+export const LineBarMockArea3: LineBarAreaProps = {
+   meta: {
+      domainUnit: 'datetime',
+      seriesId: ['0.0.3', '0.0.4','Rest of Network'],
+      seriesInfo: {
+         '0.0.3': {
+            type: 'area',
+            name: '0.0.3',
+         },
+         '0.0.4': {
+            type: 'area',
+            name: '0.0.4',
+         },
+         'Rest of Network': {
+            type: 'area',
+            name: 'Rest of Network',
+         },
+      },
+      axes: [
+         {
+            position: 'bottom',
+         },
+         {
+            position: 'left',
+            displayUnit: 'number',
+            gridLines: true,
+         },
+      ],
+   },
+   data: dataMockArea,
 };

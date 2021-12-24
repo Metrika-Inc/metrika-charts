@@ -1,5 +1,5 @@
 import React, { Suspense, SuspenseProps } from 'react';
-import { LineBarProps } from './data';
+import { LineBarAreaProps } from './data';
 import { ElasticLineBar } from './engine/elastic';
 import { NivoLineChart } from './engine/nivo';
 
@@ -8,14 +8,14 @@ const engines = {
    elastic: ElasticLineBar,
 } as const;
 
-export interface MetrikaLineBarProps extends LineBarProps {
-   engine: keyof typeof engines;
+export interface MetrikaLineBarAreaProps extends LineBarAreaProps {
+   engine?: keyof typeof engines;
    fallback?: SuspenseProps['fallback'];
 }
 
-export const MetrikaLineBar: React.FC<MetrikaLineBarProps> & { engines: Array<keyof typeof engines> } = ({
+export const MetrikaLineBarArea: React.FC<MetrikaLineBarAreaProps> & { engines: Array<keyof typeof engines> } = ({
    fallback,
-   engine,
+   engine = 'elastic',
    data,
    meta,
 }) => {
@@ -27,8 +27,8 @@ export const MetrikaLineBar: React.FC<MetrikaLineBarProps> & { engines: Array<ke
    );
 };
 
-MetrikaLineBar.defaultProps = {
+MetrikaLineBarArea.defaultProps = {
    engine: 'elastic',
 };
 
-MetrikaLineBar.engines = Object.keys(engines) as Array<keyof typeof engines>;
+MetrikaLineBarArea.engines = Object.keys(engines) as Array<keyof typeof engines>;
