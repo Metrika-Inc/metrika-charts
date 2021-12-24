@@ -1,9 +1,9 @@
 import { ResponsiveLineCanvas } from '@nivo/line';
 import React, { useMemo } from 'react';
-import { useTheme } from '../../../../_shared/theme';
-import { LineBarProps } from '../../data';
+import { useTheme } from '../../../../_shared';
+import { LineBarAreaProps } from '../../data';
 
-const NivoLineChart = ({ data }: LineBarProps) => {
+const NivoLineChart = ({ data }: LineBarAreaProps) => {
    const ChartsPalette = useTheme().data.colors;
 
    const chartData = useMemo(() => {

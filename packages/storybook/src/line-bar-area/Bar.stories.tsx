@@ -1,20 +1,20 @@
 import React from 'react';
 import { ComponentStory, ComponentMeta } from '@storybook/react';
-import { MetrikaLineBar } from '@metrika/metrika-charts';
+import { MetrikaLineBarArea } from '@metrika/metrika-charts';
 import { LineBarMock2, LineBarMock3 } from './mocks';
 import { ChartWrapper } from '../_shared/ChartWrapper';
 
 const Bar = () => {
    return (
       <ChartWrapper>
-         <MetrikaLineBar engine={'elastic'} {...LineBarMock2} />
+         <MetrikaLineBarArea engine={'elastic'} {...LineBarMock2} />
       </ChartWrapper>
    );
 };
 
 const BarGrouped = () => (
    <ChartWrapper>
-      <MetrikaLineBar engine={'elastic'} {...LineBarMock3} />
+      <MetrikaLineBarArea engine={'elastic'} {...LineBarMock3} />
    </ChartWrapper>
 );
 

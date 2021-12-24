@@ -1,13 +1,13 @@
 import React from 'react';
 import { ComponentStory, ComponentMeta } from '@storybook/react';
-import { MetrikaLineBar, MetrikaLineBarProps } from '@metrika/metrika-charts';
+import { MetrikaLineBarArea, MetrikaLineBarAreaProps } from '@metrika/metrika-charts';
 import { LineBarMock4 } from './mocks';
 import { ChartWrapper } from '../_shared/ChartWrapper';
 
-const LineBar: React.FC<{ engine: MetrikaLineBarProps["engine"] }> = ({ engine }) => {
+const LineBar: React.FC<{ engine: MetrikaLineBarAreaProps["engine"] }> = ({ engine }) => {
    return (
       <ChartWrapper>
-         <MetrikaLineBar engine={engine} {...LineBarMock4} />
+         <MetrikaLineBarArea engine={engine} {...LineBarMock4} />
       </ChartWrapper>
    );
 };

@@ -1,3 +1,4 @@
+import { StackMode } from '@metrika/elastic-charts/dist/_es6/chart_types/xy_chart/utils/specs';
 import { Color, Id } from '../../_shared/types/alias';
 import { Position } from '../../_shared/types/positions';
 import { Unit } from '../../_shared/types/units';
@@ -6,11 +7,12 @@ export type Point<X = number, Y = number> = [X, Y];
 
 export type Serie = Point[];
 
-export type LineBarData = Serie[];
+export type LineBarAreaData = Serie[];
 
 export interface SerieInfo {
-   type: 'line' | 'bar';
+   type: 'line' | 'bar' | 'area';
    subType?: 'stacked' | 'grouped';
+   stackMode?: StackMode;
    name: string;
    color?: Color;
    // goes along with the groupName for axis if you have different series that should go on different axis
@@ -35,7 +37,7 @@ export interface Axis {
    gridLines?: boolean;
 }
 
-export interface LineBarMeta {
+export interface LineBarAreaMeta {
    axes: Axis[];
    domainUnit: Unit;
    domainSide?: Position; // the side that is the "bottom" of the chart, this will be Position.bottom for most graphs
@@ -43,7 +45,7 @@ export interface LineBarMeta {
    seriesInfo: Record<Id, SerieInfo>;
 }
 
-export interface LineBarProps {
-   data: LineBarData;
-   meta: LineBarMeta;
+export interface LineBarAreaProps {
+   data: LineBarAreaData;
+   meta: LineBarAreaMeta;
 }

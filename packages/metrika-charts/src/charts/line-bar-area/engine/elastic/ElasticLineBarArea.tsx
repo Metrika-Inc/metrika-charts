@@ -4,6 +4,7 @@ import {
    Axis,
    BarSeries,
    LineSeries,
+   AreaSeries,
    Position,
    ScaleType,
    Settings,
@@ -11,17 +12,18 @@ import {
    RecursivePartial,
    LineSeriesStyle,
    Datum,
+   StackMode,
 } from '@metrika/elastic-charts';
 import React from 'react';
 import { useTheme } from '../../../../_shared';
 import { useElasticSyncTooltips } from '../../../../_shared';
 import { formattersForTypes } from '../../../../_shared/format/formatting';
-import { LineBarProps } from '../../data';
+import { LineBarAreaProps } from '../../data';
 import { formatForUnit, scaleTypeForUnit } from './format';
 import { calcChartRotation, sameSide } from './rotation';
 import { chartTheme, gridStyle } from './style';
 
-const ElasticLineBar = ({ data, meta }: LineBarProps) => {
+const ElasticLineBarArea = ({ data, meta }: LineBarAreaProps) => {
    const { ref, elasticXYEventsProps } = useElasticSyncTooltips({ enabled: true, visible: true });
 
    const ChartsPalette = useTheme().data.colors;
@@ -166,10 +168,21 @@ const ElasticLineBar = ({ data, meta }: LineBarProps) => {
                line: { strokeWidth: 2 },
             };
 
+            if (seriesInfo && seriesInfo.type === 'area') {
+               return (
+                  <AreaSeries
+                     {...seriesProps}
+                     stackAccessors={seriesInfo.subType === 'stacked' ? [0] : undefined}
+                     stackMode={seriesInfo.stackMode}
+                     areaSeriesStyle={lineStyles}
+                  />
+               );
+            }
+
             return <LineSeries {...seriesProps} lineSeriesStyle={lineStyles} />;
          })}
       </MetrikaChart>
    );
 };
 
-export default ElasticLineBar;
+export default ElasticLineBarArea;
