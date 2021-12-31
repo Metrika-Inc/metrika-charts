@@ -1,0 +1,26 @@
+.echLegendItem {
+   button {
+      background: none;
+      border: none;
+      padding: 0;
+      outline: none;
+      color: inherit;
+   }
+
+   button:hover {
+      cursor: pointer;
+   }
+
+   // Remove some margin in the elastic charts legend so it aligns to the left of the chart and header.
+   .echLegendItem__color {
+      margin-left: 0 !important;
+
+      // Turn the circles into squares
+      .echIcon {
+         background-color: currentColor;
+         circle {
+            display: none;
+         }
+      }
+   }
+}

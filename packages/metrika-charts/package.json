@@ -9,8 +9,9 @@
   "types": "build/index.d.ts",
   "scripts": {
     "build:clean": "rimraf build",
+    "build:css": "sass ./src/metrika-theme.scss ./build/metrika-theme.css",
     "build:es6": "tsc -p tsconfig.json",
-    "build": "npm run build:clean && npm run build:es6",
+    "build": "npm run build:clean && npm run build:es6 && npm run build:css",
     "watch": "tsc -w"
   },
   "sideEffects": false,
@@ -36,6 +37,7 @@
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
     "rimraf": "^3.0.2",
+    "sass": "^1.45.2",
     "typescript": "^4.5.4"
   }
 }

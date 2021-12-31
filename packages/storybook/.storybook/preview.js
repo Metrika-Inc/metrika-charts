@@ -1,5 +1,7 @@
 import './ibm-mono.css';
 import '@metrika/elastic-charts/dist/theme_light.css';
+import '@metrika/metrika-charts/build/metrika-theme.css';
+
 import { ThemeProvider, metrikaTheme, EventsBus, EventsProvider } from '@metrika/metrika-charts';
 
 export const parameters = {
