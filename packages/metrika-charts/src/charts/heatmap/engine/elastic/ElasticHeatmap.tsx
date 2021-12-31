@@ -65,6 +65,7 @@ const ElasticHeatmap = (props: { data: HeatmapData; meta: HeatmapMeta; className
             // legendPosition="top"
             // brushAxis="both"
             xDomain={{ min: minTime, max: maxTime }}
+            tooltip={{ customStyle: { maxWidth: 'none' } }}
          />
          <Heatmap
             id={props.meta.valueId}
