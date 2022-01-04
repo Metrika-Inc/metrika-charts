@@ -15,19 +15,19 @@ export interface SerieInfo {
    stackMode?: StackMode;
    name: string;
    color?: Color;
-   // goes along with the groupName for axis if you have different series that should go on different axis
-   groupName?: string;
+   //if you have different series that should go on different axis
+   axisName?: string;
    showLabels?: boolean; // if the bar chart has values in the bars
 }
 
 export interface Axis {
-   groupName?: string;
+   axisName?: string;
    // which side the axis is on
    position: Position;
    // which unit to display the axis values as
    displayUnit?: Unit;
    title?: string;
-   // if fit is true, the axis min and max will be set to fix aroudnd the data
+   // if fit is true, the axis min and max will be set to fix around the data
    // the default min is zero and the default max is set by the data
    // if you set the min or max, they will override the defaults
    domain?: { fit?: boolean; min?: number; max?: number; padPercent?: number };

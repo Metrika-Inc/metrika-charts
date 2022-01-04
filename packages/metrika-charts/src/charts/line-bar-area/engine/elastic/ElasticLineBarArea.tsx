@@ -12,7 +12,6 @@ import {
    RecursivePartial,
    LineSeriesStyle,
    Datum,
-   StackMode,
 } from '@metrika/elastic-charts';
 import React from 'react';
 import { useTheme } from '../../../../_shared';
@@ -37,7 +36,7 @@ const ElasticLineBarArea = ({ data, meta }: LineBarAreaProps) => {
       if (meta.seriesInfo) {
          if (meta.seriesInfo[id])
             //todo matt check if ok
-            groups.add(meta.seriesInfo[id].groupName);
+            groups.add(meta.seriesInfo[id].axisName);
       }
    });
 
@@ -51,7 +50,7 @@ const ElasticLineBarArea = ({ data, meta }: LineBarAreaProps) => {
 
       // if this axis is on or opposite the base of the chart (bottom by default)
       if (sameSide(axis.position, domainSide)) {
-         axisDomainGroups.delete(axis.groupName);
+         axisDomainGroups.delete(axis.axisName);
 
          tickFormat = formatForUnit(meta.domainUnit, data);
       } else {
@@ -93,7 +92,7 @@ const ElasticLineBarArea = ({ data, meta }: LineBarAreaProps) => {
             labelFormat={labelFormat}
             showOverlappingTicks
             domain={domain}
-            groupId={axis.groupName}
+            groupId={axis.axisName}
             gridLine={axis.gridLines ? gridStyle : undefined}
          />
       );
@@ -151,7 +150,7 @@ const ElasticLineBarArea = ({ data, meta }: LineBarAreaProps) => {
                ...accessors,
                yNice: true,
                data: series,
-               groupId: seriesInfo?.groupName,
+               groupId: seriesInfo?.axisName,
             };
             if (seriesInfo && seriesInfo.type === 'bar') {
                return (
