@@ -39,14 +39,11 @@ export const formatForRange = (range: number) => {
 // shorten values over 1 million with an M and use a single decimal place
 // shorten values over 1,000 with an K and use a single decimal place
 export const bigValueFormatter = (v: number): string => {
-   if (v >= 1e9) {
-      return (v / 1e9).toFixed(2) + 'B';
-   }
-   if (v >= 1e6) {
-      return (v / 1e6).toFixed(2) + 'M';
-   }
-   if (v >= 1e3) {
-      return (v / 1e3).toFixed(2) + 'K';
+   const s = ['K', 'M', 'B'];
+   for (let i = s.length - 1; i >= 0; i--) {
+      if (Math.abs(v) >= Math.pow(1e3, i + 1)) {
+         return (v / Math.pow(1e3, i + 1)).toFixed(2) + s[i];
+      }
    }
    return v + '';
 };
