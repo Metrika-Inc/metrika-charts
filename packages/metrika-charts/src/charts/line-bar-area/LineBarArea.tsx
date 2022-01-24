@@ -12,19 +12,19 @@ export interface MetrikaLineBarAreaProps extends LineBarAreaProps {
    engine?: keyof typeof engines;
    className?: string;
    fallback?: SuspenseProps['fallback'];
+   syncTooltipEnabled?: boolean;
+   syncTooltipVisible?: boolean;
 }
 
 export const MetrikaLineBarArea: React.FC<MetrikaLineBarAreaProps> & { engines: Array<keyof typeof engines> } = ({
    fallback,
    engine = 'elastic',
-   data,
-   meta,
-   className,
+   ...rest
 }) => {
    const Engine = engines[engine];
    return (
       <Suspense fallback={fallback || null}>
-         <Engine data={data} meta={meta} className={className} />
+         <Engine {...rest} />
       </Suspense>
    );
 };

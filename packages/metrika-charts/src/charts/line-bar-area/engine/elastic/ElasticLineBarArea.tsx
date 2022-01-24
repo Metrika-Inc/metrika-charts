@@ -22,8 +22,17 @@ import { formatForUnit, scaleTypeForUnit } from './format';
 import { calcChartRotation, sameSide } from './rotation';
 import { chartTheme, gridStyle } from './style';
 
-const ElasticLineBarArea = ({ data, meta, className }: LineBarAreaProps & { className?: string }) => {
-   const { ref, elasticXYEventsProps } = useElasticSyncTooltips({ enabled: true, visible: true });
+const ElasticLineBarArea = ({
+   data,
+   meta,
+   className,
+   syncTooltipEnabled,
+   syncTooltipVisible,
+}: LineBarAreaProps & { className?: string; syncTooltipEnabled?: boolean; syncTooltipVisible?: boolean }) => {
+   const { ref, elasticXYEventsProps } = useElasticSyncTooltips({
+      enabled: syncTooltipEnabled,
+      visible: syncTooltipVisible,
+   });
 
    const ChartsPalette = useTheme().data.colors;
 

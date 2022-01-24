@@ -2,7 +2,7 @@ import { Chart, PointerUpdateTrigger } from '@metrika/elastic-charts';
 import React, { useEffect, useMemo } from 'react';
 import { useEventsBus } from './context';
 
-export function useElasticSyncTooltips({ enabled, visible }: { enabled; visible: boolean }) {
+export function useElasticSyncTooltips({ enabled, visible }: { enabled?: boolean; visible?: boolean }) {
    const eventsBus = useEventsBus();
 
    const ref = React.useRef<Chart>(null);

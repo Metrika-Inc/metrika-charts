@@ -8,10 +8,10 @@ const LineEvents: React.FC<{ engine: MetrikaLineBarAreaProps["engine"] }> = ({ e
    return (
       <>
          <ChartWrapper>
-            <MetrikaLineBarArea engine={engine} {...LineBarMock1} />
+            <MetrikaLineBarArea syncTooltipEnabled syncTooltipVisible engine={engine}  {...LineBarMock1} />
          </ChartWrapper>
          <ChartWrapper>
-            <MetrikaLineBarArea engine={engine} {...LineBarMock1} />
+            <MetrikaLineBarArea syncTooltipEnabled syncTooltipVisible engine={engine} {...LineBarMock1} />
          </ChartWrapper>
       </>
    );
