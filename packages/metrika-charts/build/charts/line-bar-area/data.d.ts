@@ -2,7 +2,7 @@ import { StackMode } from '@metrika/elastic-charts/dist/_es6/chart_types/xy_char
 import { Color, Id } from '../../_shared/types/alias';
 import { Position } from '../../_shared/types/positions';
 import { Unit } from '../../_shared/types/units';
-export declare type Point<X = number, Y = number> = [X, Y];
+export declare type Point<X = number, Y = number | null> = [X, Y];
 export declare type Serie = Point[];
 export declare type LineBarAreaData = Serie[];
 export interface SerieInfo {

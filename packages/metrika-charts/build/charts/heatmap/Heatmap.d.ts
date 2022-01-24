@@ -9,6 +9,7 @@ declare const engines: {
 };
 export interface MetrikaHeatmapProps extends HeatmapProps {
     engine: keyof typeof engines;
+    className?: string;
     fallback?: SuspenseProps['fallback'];
 }
 export declare const MetrikaHeatmap: React.FC<MetrikaHeatmapProps> & {

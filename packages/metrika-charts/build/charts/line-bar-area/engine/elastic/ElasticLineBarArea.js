@@ -6,9 +6,12 @@ import { formattersForTypes } from '../../../../_shared/format/formatting';
 import { formatForUnit, scaleTypeForUnit } from './format';
 import { calcChartRotation, sameSide } from './rotation';
 import { chartTheme, gridStyle } from './style';
-const ElasticLineBarArea = ({ data, meta }) => {
+const ElasticLineBarArea = ({ data, meta, className, syncTooltipEnabled, syncTooltipVisible, }) => {
     var _a;
-    const { ref, elasticXYEventsProps } = useElasticSyncTooltips({ enabled: true, visible: true });
+    const { ref, elasticXYEventsProps } = useElasticSyncTooltips({
+        enabled: syncTooltipEnabled,
+        visible: syncTooltipVisible,
+    });
     const ChartsPalette = useTheme().data.colors;
     if (meta === undefined) {
         return null;
@@ -38,11 +41,11 @@ const ElasticLineBarArea = ({ data, meta }) => {
                 domain = { fit: axis.domain.fit, min: axis.domain.min, max: axis.domain.max };
                 // handle one value only
                 const yMax = data.reduce((max, serie) => {
-                    const maxSere = serie.reduce((ms, v) => (ms > v[1] ? ms : v[1]), -Infinity);
+                    const maxSere = serie.reduce((ms, v) => (typeof v[1] !== 'number' ? ms : ms > v[1] ? ms : v[1]), -Infinity);
                     return maxSere > max ? maxSere : max;
                 }, -Infinity);
                 const yMin = data.reduce((max, serie) => {
-                    const maxSere = serie.reduce((ms, v) => (ms < v[1] ? ms : v[1]), +Infinity);
+                    const maxSere = serie.reduce((ms, v) => (typeof v[1] !== 'number' ? ms : ms < v[1] ? ms : v[1]), +Infinity);
                     return maxSere < max ? maxSere : max;
                 }, +Infinity);
                 if (yMin === yMax) {
@@ -73,7 +76,7 @@ const ElasticLineBarArea = ({ data, meta }) => {
         axes === null || axes === void 0 ? void 0 : axes.push(_jsx(Axis, { id: 'groupfiller_' + i, position: domainSide, hide: true, groupId: groupId, tickFormat: tickFormat }, 'groupfiller_' + i));
     });
     const chartHasData = data.reduce((hasData, serie) => hasData && serie.length > 0, true);
-    return (_jsxs(MetrikaChart, Object.assign({ ref: ref }, { children: [_jsx(Settings, Object.assign({ showLegend: true, theme: chartTheme, legendPosition: Position.Top, rotation: calcChartRotation(meta.domainSide) }, elasticXYEventsProps), void 0), chartHasData && axes, data.map((series, i) => {
+    return (_jsxs(MetrikaChart, Object.assign({ ref: ref, className: className }, { children: [_jsx(Settings, Object.assign({ showLegend: true, theme: chartTheme, legendPosition: Position.Top, rotation: calcChartRotation(meta.domainSide) }, elasticXYEventsProps), void 0), chartHasData && axes, data.map((series, i) => {
                 const seriesId = meta.seriesId[i];
                 const seriesInfo = meta.seriesInfo ? meta.seriesInfo[seriesId] : null;
                 const accessors = {

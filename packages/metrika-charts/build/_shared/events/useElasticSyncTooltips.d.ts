@@ -1,8 +1,8 @@
 import { Chart, PointerUpdateTrigger } from '@metrika/elastic-charts';
 import React from 'react';
 export declare function useElasticSyncTooltips({ enabled, visible }: {
-    enabled: any;
-    visible: boolean;
+    enabled?: boolean;
+    visible?: boolean;
 }): {
     ref: React.RefObject<Chart>;
     elasticXYEventsProps: {
@@ -11,7 +11,7 @@ export declare function useElasticSyncTooltips({ enabled, visible }: {
         pointerUpdateTrigger: PointerUpdateTrigger;
         externalPointerEvents: {
             tooltip: {
-                visible: boolean;
+                visible: boolean | undefined;
             };
         };
     } | undefined;
