@@ -22,7 +22,7 @@ import { formatForUnit, scaleTypeForUnit } from './format';
 import { calcChartRotation, sameSide } from './rotation';
 import { chartTheme, gridStyle } from './style';
 
-const ElasticLineBarArea = ({ data, meta }: LineBarAreaProps) => {
+const ElasticLineBarArea = ({ data, meta, className }: LineBarAreaProps & { className?: string }) => {
    const { ref, elasticXYEventsProps } = useElasticSyncTooltips({ enabled: true, visible: true });
 
    const ChartsPalette = useTheme().data.colors;
@@ -59,11 +59,17 @@ const ElasticLineBarArea = ({ data, meta }: LineBarAreaProps) => {
 
             // handle one value only
             const yMax = data.reduce((max, serie) => {
-               const maxSere = serie.reduce((ms, v) => (ms > v[1] ? ms : v[1]), -Infinity);
+               const maxSere = serie.reduce(
+                  (ms, v) => (typeof v[1] !== 'number' ? ms : ms > v[1] ? ms : v[1]),
+                  -Infinity,
+               );
                return maxSere > max ? maxSere : max;
             }, -Infinity);
             const yMin = data.reduce((max, serie) => {
-               const maxSere = serie.reduce((ms, v) => (ms < v[1] ? ms : v[1]), +Infinity);
+               const maxSere = serie.reduce(
+                  (ms, v) => (typeof v[1] !== 'number' ? ms : ms < v[1] ? ms : v[1]),
+                  +Infinity,
+               );
                return maxSere < max ? maxSere : max;
             }, +Infinity);
 
@@ -121,7 +127,7 @@ const ElasticLineBarArea = ({ data, meta }: LineBarAreaProps) => {
    const chartHasData = data.reduce((hasData, serie) => hasData && serie.length > 0, true);
 
    return (
-      <MetrikaChart ref={ref}>
+      <MetrikaChart ref={ref} className={className}>
          <Settings
             showLegend
             theme={chartTheme}

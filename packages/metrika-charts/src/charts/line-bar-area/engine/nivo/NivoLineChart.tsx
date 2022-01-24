@@ -3,7 +3,7 @@ import React, { useMemo } from 'react';
 import { useTheme } from '../../../../_shared';
 import { LineBarAreaProps } from '../../data';
 
-const NivoLineChart = ({ data }: LineBarAreaProps) => {
+const NivoLineChart = ({ data }: LineBarAreaProps & { className?: string }) => {
    const ChartsPalette = useTheme().data.colors;
 
    const chartData = useMemo(() => {

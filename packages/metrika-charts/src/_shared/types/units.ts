@@ -1,4 +1,4 @@
-type BaseUnit = 'datetime' | 'number' | 'percent' | 'string';
+type BaseUnit = 'link' | 'boolean' | 'datetime' | 'number' | 'percent' | 'string';
 
 type Algo_types = 'algo_microalgo' | 'algo_algo' | 'algo_address' | 'algo_voting_status';
 

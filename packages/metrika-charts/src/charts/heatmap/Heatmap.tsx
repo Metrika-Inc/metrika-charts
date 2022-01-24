@@ -8,6 +8,7 @@ const engines = {
 
 export interface MetrikaHeatmapProps extends HeatmapProps {
    engine: keyof typeof engines;
+   className?: string;
    fallback?: SuspenseProps['fallback'];
 }
 
@@ -16,11 +17,12 @@ export const MetrikaHeatmap: React.FC<MetrikaHeatmapProps> & { engines: Array<ke
    engine,
    data,
    meta,
+   className,
 }) => {
    const Engine = engines[engine];
    return (
       <Suspense fallback={fallback || null}>
-         <Engine data={data} meta={meta} />
+         <Engine data={data} meta={meta} className={className} />
       </Suspense>
    );
 };
