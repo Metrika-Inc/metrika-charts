@@ -7,7 +7,7 @@ export type HeatmapData = MapPoint[];
 // eslint-disable-next-line @typescript-eslint/no-empty-interface
 export interface HeatmapMeta {
    valueId: string;
-   showValueLabels: boolean;
+   showValueLabels?: boolean;
    yAxisName: string;
    xAxisName: string;
    yAxisUnit: Unit;

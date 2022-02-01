@@ -14,7 +14,7 @@ export interface MetrikaHeatmapProps extends HeatmapProps {
 
 export const MetrikaHeatmap: React.FC<MetrikaHeatmapProps> & { engines: Array<keyof typeof engines> } = ({
    fallback,
-   engine,
+   engine = 'elastic',
    data,
    meta,
    className,

@@ -133,7 +133,7 @@ const ElasticLineBarArea = ({
       );
    });
 
-   const chartHasData = data.reduce((hasData, serie) => hasData && serie.length > 0, true);
+   const chartHasData = data.some((serie) => serie.length > 0);
 
    return (
       <MetrikaChart ref={ref} className={className}>
