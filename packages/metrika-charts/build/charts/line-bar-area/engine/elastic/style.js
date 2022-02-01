@@ -43,13 +43,9 @@ const barTheme = {
         },
     },
 };
-export const chartTheme = {
-    chartMargins: {
+export const chartTheme = Object.assign(Object.assign({ chartMargins: {
         left: 16,
         bottom: 16,
         right: 16,
-    },
-    ...axisTheme,
-    ...barTheme,
-};
+    } }, axisTheme), barTheme);
 //# sourceMappingURL=style.js.map

@@ -4,7 +4,7 @@ export function hueInterpolator(colors) {
     return (d) => {
         const index = Math.round(d * 255);
         const [r, g, b, a] = colors[index];
-        return colors[index].length === 3 ? `rgb(${r},${g},${b})` : `rgba(${r},${g},${b},${a ?? 1})`;
+        return colors[index].length === 3 ? `rgb(${r},${g},${b})` : `rgba(${r},${g},${b},${a !== null && a !== void 0 ? a : 1})`;
     };
 }
 export const interpolatorCET2s = hueInterpolator(palettes.CET2s.map(([r, g, b]) => [r, g, b, 0.8]));

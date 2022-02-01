@@ -7,6 +7,7 @@ import { formatForUnit, scaleTypeForUnit } from './format';
 import { calcChartRotation, sameSide } from './rotation';
 import { chartTheme, gridStyle } from './style';
 const ElasticLineBarArea = ({ data, meta, className, syncTooltipEnabled, syncTooltipVisible, }) => {
+    var _a;
     const { ref, elasticXYEventsProps } = useElasticSyncTooltips({
         enabled: syncTooltipEnabled,
         visible: syncTooltipVisible,
@@ -24,7 +25,8 @@ const ElasticLineBarArea = ({ data, meta, className, syncTooltipEnabled, syncToo
         }
     });
     const axisDomainGroups = groups;
-    const axes = meta.axes?.map((axis, i) => {
+    const axes = (_a = meta.axes) === null || _a === void 0 ? void 0 : _a.map((axis, i) => {
+        var _a;
         let tickFormat = undefined;
         let labelFormat = undefined;
         const domainSide = meta.domainSide || 'bottom';
@@ -56,7 +58,7 @@ const ElasticLineBarArea = ({ data, meta, className, syncTooltipEnabled, syncToo
                     domain = { fit: axis.domain.fit, min: axis.domain.min || min, max: axis.domain.max || max };
                 }
             }
-            const formatters = formattersForTypes[axis.displayUnit ?? ''];
+            const formatters = formattersForTypes[(_a = axis.displayUnit) !== null && _a !== void 0 ? _a : ''];
             if (formatters) {
                 tickFormat = formatters[0];
                 labelFormat = formatters[1];
@@ -71,41 +73,33 @@ const ElasticLineBarArea = ({ data, meta, className, syncTooltipEnabled, syncToo
     axisDomainGroups.forEach((groupId, i) => {
         const domainSide = meta.domainSide || 'bottom';
         const tickFormat = formatForUnit(meta.domainUnit, data);
-        axes?.push(_jsx(Axis, { id: 'groupfiller_' + i, position: domainSide, hide: true, groupId: groupId, tickFormat: tickFormat }, 'groupfiller_' + i));
+        axes === null || axes === void 0 ? void 0 : axes.push(_jsx(Axis, { id: 'groupfiller_' + i, position: domainSide, hide: true, groupId: groupId, tickFormat: tickFormat }, 'groupfiller_' + i));
     });
     const chartHasData = data.some((serie) => serie.length > 0);
-    return (_jsxs(MetrikaChart, { ref: ref, className: className, children: [_jsx(Settings, { showLegend: true, theme: chartTheme, legendPosition: Position.Top, rotation: calcChartRotation(meta.domainSide), ...elasticXYEventsProps }, void 0), chartHasData && axes, data.map((series, i) => {
+    return (_jsxs(MetrikaChart, Object.assign({ ref: ref, className: className }, { children: [_jsx(Settings, Object.assign({ showLegend: true, theme: chartTheme, legendPosition: Position.Top, rotation: calcChartRotation(meta.domainSide) }, elasticXYEventsProps), void 0), chartHasData && axes, data.map((series, i) => {
                 const seriesId = meta.seriesId[i];
                 const seriesInfo = meta.seriesInfo ? meta.seriesInfo[seriesId] : null;
                 const accessors = {
                     xAccessor: 0,
                     yAccessors: [1],
                 };
-                const seriesProps = {
-                    key: i,
-                    id: seriesInfo ? seriesInfo.name : i + '',
+                const seriesProps = Object.assign(Object.assign({ key: i, id: seriesInfo ? seriesInfo.name : i + '', 
                     // todo fix it!!
-                    color: ChartsPalette[i] || seriesInfo?.color,
-                    xScaleType: scaleTypeForUnit(meta.domainUnit),
+                    color: ChartsPalette[i] || (seriesInfo === null || seriesInfo === void 0 ? void 0 : seriesInfo.color), xScaleType: scaleTypeForUnit(meta.domainUnit), 
                     // tickFormat: tickFormat,
-                    yScaleType: ScaleType.Linear,
-                    ...accessors,
-                    yNice: true,
-                    data: series,
-                    groupId: seriesInfo?.axisName,
-                };
+                    yScaleType: ScaleType.Linear }, accessors), { yNice: true, data: series, groupId: seriesInfo === null || seriesInfo === void 0 ? void 0 : seriesInfo.axisName });
                 if (seriesInfo && seriesInfo.type === 'bar') {
-                    return (_jsx(BarSeries, { ...seriesProps, stackAccessors: seriesInfo.subType === 'grouped' ? undefined : [0], displayValueSettings: { showValueLabel: seriesInfo.showLabels, isValueContainedInElement: true } }, void 0));
+                    return (_jsx(BarSeries, Object.assign({}, seriesProps, { stackAccessors: seriesInfo.subType === 'grouped' ? undefined : [0], displayValueSettings: { showValueLabel: seriesInfo.showLabels, isValueContainedInElement: true } }), void 0));
                 }
                 const lineStyles = {
                     point: { visible: false },
                     line: { strokeWidth: 2 },
                 };
                 if (seriesInfo && seriesInfo.type === 'area') {
-                    return (_jsx(AreaSeries, { ...seriesProps, stackAccessors: seriesInfo.subType === 'stacked' ? [0] : undefined, stackMode: seriesInfo.stackMode, areaSeriesStyle: lineStyles }, void 0));
+                    return (_jsx(AreaSeries, Object.assign({}, seriesProps, { stackAccessors: seriesInfo.subType === 'stacked' ? [0] : undefined, stackMode: seriesInfo.stackMode, areaSeriesStyle: lineStyles }), void 0));
                 }
-                return _jsx(LineSeries, { ...seriesProps, lineSeriesStyle: lineStyles }, void 0);
-            })] }, void 0));
+                return _jsx(LineSeries, Object.assign({}, seriesProps, { lineSeriesStyle: lineStyles }), void 0);
+            })] }), void 0));
 };
 export default ElasticLineBarArea;
 //# sourceMappingURL=ElasticLineBarArea.js.map

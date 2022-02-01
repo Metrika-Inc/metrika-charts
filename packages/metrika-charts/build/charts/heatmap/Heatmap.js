@@ -6,7 +6,7 @@ const engines = {
 };
 export const MetrikaHeatmap = ({ fallback, engine = 'elastic', data, meta, className, }) => {
     const Engine = engines[engine];
-    return (_jsx(Suspense, { fallback: fallback || null, children: _jsx(Engine, { data: data, meta: meta, className: className }, void 0) }, void 0));
+    return (_jsx(Suspense, Object.assign({ fallback: fallback || null }, { children: _jsx(Engine, { data: data, meta: meta, className: className }, void 0) }), void 0));
 };
 MetrikaHeatmap.defaultProps = {
     engine: 'elastic',
