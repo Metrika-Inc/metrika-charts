@@ -4,13 +4,13 @@ export function useElasticSyncTooltips({ enabled, visible }) {
     const eventsBus = useEventsBus();
     const ref = React.useRef(null);
     useEffect(() => {
-        return eventsBus === null || eventsBus === void 0 ? void 0 : eventsBus.subscribe(ref);
+        return eventsBus?.subscribe(ref);
     }, [eventsBus]);
     const elasticXYEventsProps = useMemo(() => {
         if (!enabled)
             return undefined;
         return {
-            onPointerUpdate: eventsBus === null || eventsBus === void 0 ? void 0 : eventsBus.elastic_onPointerUpdate,
+            onPointerUpdate: eventsBus?.elastic_onPointerUpdate,
             pointerUpdateDebounce: 0,
             pointerUpdateTrigger: 'x',
             externalPointerEvents: {

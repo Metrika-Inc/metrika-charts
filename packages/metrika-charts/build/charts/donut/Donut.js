@@ -7,7 +7,7 @@ const engines = {
 };
 export const MetrikaDonut = ({ fallback, engine, data, meta, }) => {
     const Engine = engines[engine];
-    return (_jsx(Suspense, Object.assign({ fallback: fallback || null }, { children: _jsx(Engine, { data: data, meta: meta }, void 0) }), void 0));
+    return (_jsx(Suspense, { fallback: fallback || null, children: _jsx(Engine, { data: data, meta: meta }, void 0) }, void 0));
 };
 MetrikaDonut.defaultProps = {
     engine: 'elastic',

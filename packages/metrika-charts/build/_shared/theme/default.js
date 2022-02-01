@@ -10,10 +10,18 @@ export const metrikaTheme = {
         colors: MetrikaPalette,
     },
     chart: {
-        donut: Object.assign({}, baseChartTheme),
-        linebar: Object.assign({}, baseChartTheme),
-        heatmap: Object.assign({}, baseChartTheme),
-        treemap: Object.assign({}, baseChartTheme),
+        donut: {
+            ...baseChartTheme,
+        },
+        linebar: {
+            ...baseChartTheme,
+        },
+        heatmap: {
+            ...baseChartTheme,
+        },
+        treemap: {
+            ...baseChartTheme,
+        },
     },
 };
 //# sourceMappingURL=default.js.map

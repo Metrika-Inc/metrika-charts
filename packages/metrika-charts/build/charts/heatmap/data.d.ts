@@ -3,7 +3,7 @@ export declare type MapPoint = [string, number | null, number | null];
 export declare type HeatmapData = MapPoint[];
 export interface HeatmapMeta {
     valueId: string;
-    showValueLabels: boolean;
+    showValueLabels?: boolean;
     yAxisName: string;
     xAxisName: string;
     yAxisUnit: Unit;
