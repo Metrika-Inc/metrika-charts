@@ -1,17 +1,8 @@
 import { timeFormatter } from '@metrika/elastic-charts';
 import * as d3 from 'd3-format';
 
-const hoursCutoff = 1000 * 60 * 60 * 24; // 1 day
 const daysCutoff = 1000 * 60 * 60 * 24 * 30 * 3; // 3 months
-const HOUR_FORMATTER = (datetime: unknown) => {
-   // if it is the start of a new day, write out the full day
-   // TODO - investigate feasability of an improved solution to this problem
-   // if (timeFormatter("HH")(datetime) === "00") {
-   //   return timeFormatter("DD MMM")(datetime);
-   // }
 
-   return timeFormatter('HH:mm')(datetime);
-};
 const DAY_FORMATTER = (datetime: unknown) => {
    // if it is the start of a new month, write ou the full month
    // if (timeFormatter("DD")(datetime) === "01") {
@@ -27,13 +18,7 @@ export const formatForRange = (range: number) => {
    // Days: 25 JUN
    // If needed, months: JUN'21
 
-   if (range < hoursCutoff) {
-      return HOUR_FORMATTER;
-   } else if (range < daysCutoff) {
-      return DAY_FORMATTER;
-   } else {
-      return (date: unknown) => MONTH_FORMATTER(date).toUpperCase();
-   }
+   return range < daysCutoff ? DAY_FORMATTER : (date: unknown) => MONTH_FORMATTER(date).toUpperCase();
 };
 
 // shorten values over 1 million with an M and use a single decimal place
@@ -61,7 +46,7 @@ const pipe =
 // convert microAlgo to Algo
 const microAlgoToAlgo: TickFormatter = (uAlgo: number) => uAlgo / 1e6;
 // when showing an algo address, only show the first 6 characters
-const formatAlgoAddr: TickFormatter = (value: string) => value.substring(0, 6);
+const formatAlgoAddr: TickFormatter = (value: string) => value.slice(0, 6);
 // to format algos, use the big value formatter
 const formatAlgo: LabelFormatter = (value: number) => bigValueFormatter(value);
 // to format microalgos, use the big value formatter
