@@ -1,4 +1,9 @@
-import { GridLineStyle, PartialTheme } from '@metrika/elastic-charts';
+import { GridLineStyle, LineSeriesStyle, PartialTheme, RecursivePartial } from '@metrika/elastic-charts';
+
+export const lineStyles: RecursivePartial<LineSeriesStyle> = {
+   point: { visible: false },
+   line: { strokeWidth: 2 },
+};
 
 export const gridStyle: Partial<GridLineStyle> = {
    visible: true,

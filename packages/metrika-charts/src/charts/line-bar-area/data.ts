@@ -42,7 +42,7 @@ export interface LineBarAreaMeta {
    domainUnit: Unit;
    domainSide?: Position; // the side that is the "bottom" of the chart, this will be Position.bottom for most graphs
    seriesId: Id[]; // Each element corresponds to `data` by index
-   seriesInfo: Record<Id, SerieInfo>;
+   seriesInfo: Record<Id, SerieInfo | undefined>;
 }
 
 export interface LineBarAreaProps {

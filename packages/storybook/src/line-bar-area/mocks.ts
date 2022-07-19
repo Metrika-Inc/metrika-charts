@@ -343,7 +343,7 @@ export const LineBarMock41: LineBarAreaProps = {
          },
          {
             position: 'left',
-            displayUnit: 'number',
+            displayUnit: 'percent',
             gridLines: false,
          },
          {

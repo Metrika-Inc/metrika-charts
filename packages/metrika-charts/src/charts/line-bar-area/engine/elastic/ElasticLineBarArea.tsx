@@ -9,8 +9,6 @@ import {
    ScaleType,
    Settings,
    TickFormatter,
-   RecursivePartial,
-   LineSeriesStyle,
    Datum,
 } from '@metrika/elastic-charts';
 import React from 'react';
@@ -20,7 +18,7 @@ import { formattersForTypes } from '../../../../_shared/format/formatting';
 import { LineBarAreaProps } from '../../data';
 import { formatForUnit, scaleTypeForUnit } from './format';
 import { calcChartRotation, sameSide } from './rotation';
-import { chartTheme, gridStyle } from './style';
+import { chartTheme, gridStyle, lineStyles } from './style';
 
 const ElasticLineBarArea = ({
    data,
@@ -45,7 +43,7 @@ const ElasticLineBarArea = ({
       if (meta.seriesInfo) {
          if (meta.seriesInfo[id])
             //todo matt check if ok
-            groups.add(meta.seriesInfo[id].axisName);
+            groups.add(meta.seriesInfo[id]?.axisName);
       }
    });
 
@@ -82,7 +80,7 @@ const ElasticLineBarArea = ({
                return maxSere < max ? maxSere : max;
             }, +Infinity);
 
-            if (yMin === yMax) {
+            if (yMax - yMin < 0.001) {
                let min = yMin < +Infinity ? yMin - (axis.domain.padPercent || 1 / 10) * yMin : undefined;
                if (axis.displayUnit === 'percent' && min && min < 0) min = 0;
                let max = yMax > -Infinity ? yMax + (axis.domain.padPercent || 1 / 10) * yMax : undefined;
@@ -147,27 +145,22 @@ const ElasticLineBarArea = ({
          {chartHasData && axes}
          {data.map((series, i) => {
             const seriesId = meta.seriesId[i];
-            const seriesInfo = meta.seriesInfo ? meta.seriesInfo[seriesId] : null;
-
-            const accessors = {
-               xAccessor: 0,
-               yAccessors: [1],
-            };
+            const seriesInfo = meta.seriesInfo[seriesId];
 
             const seriesProps = {
                key: i,
-               id: seriesInfo ? seriesInfo.name : i + '',
-               // todo fix it!!
-               color: ChartsPalette[i] || seriesInfo?.color,
+               id: seriesId,
+               name: seriesInfo?.name || seriesId, //todo introduce formatter for lenged name textUiUppercase
+               color: seriesInfo?.color || ChartsPalette[i],
                xScaleType: scaleTypeForUnit(meta.domainUnit),
-               // tickFormat: tickFormat,
                yScaleType: ScaleType.Linear,
-               ...accessors,
+               xAccessor: 0,
+               yAccessors: [1],
                yNice: true,
                data: series,
                groupId: seriesInfo?.axisName,
             };
-            if (seriesInfo && seriesInfo.type === 'bar') {
+            if (seriesInfo?.type === 'bar') {
                return (
                   <BarSeries
                      {...seriesProps}
@@ -177,12 +170,7 @@ const ElasticLineBarArea = ({
                );
             }
 
-            const lineStyles: RecursivePartial<LineSeriesStyle> = {
-               point: { visible: false },
-               line: { strokeWidth: 2 },
-            };
-
-            if (seriesInfo && seriesInfo.type === 'area') {
+            if (seriesInfo?.type === 'area') {
                return (
                   <AreaSeries
                      {...seriesProps}
