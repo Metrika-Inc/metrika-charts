@@ -1,13 +1,13 @@
 import { ResponsiveLineCanvas } from '@nivo/line';
 import React, { useMemo } from 'react';
 import { useTheme } from '../../../../_shared';
-import { LineBarAreaProps } from '../../data';
+import { LineBarAreaProps, Serie } from '../../data';
 
 const NivoLineChart = ({ data }: LineBarAreaProps & { className?: string }) => {
    const ChartsPalette = useTheme().data.colors;
 
    const chartData = useMemo(() => {
-      return data.map((serie: any[], i: { toString: () => any }) => ({
+      return data.map((serie: Serie, i: { toString: () => string }) => ({
          id: i ? 'Receiver Count' : 'Sender count',
          data: serie.map((point) => ({ x: new Date(point[0]), y: point[1] })),
       }));

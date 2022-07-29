@@ -1,3 +1,3 @@
-export type Datum = any;
+export type Datum = unknown;
 export type Color = string;
 export type Id = string;

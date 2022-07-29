@@ -1,4 +1,6 @@
-const MetrikaPalette = ['#3A87BF', '#002845', '#60A4D0', '#01487B', '#94C3DD', '#146BAB'];
+import { GaugeDefaultTheme } from '../../charts/gauge/theme';
+
+const MetrikaPalette = ['#3A87BF', '#002845', '#60A4D0', '#cfdfea', '#94C3DD', '#146BAB'];
 
 const baseChartTheme = {
    fontFamily: 'IBM Plex Mono',
@@ -24,6 +26,7 @@ export const metrikaTheme = {
       treemap: {
          ...baseChartTheme,
       },
+      gauge: GaugeDefaultTheme,
    },
 } as const;
 

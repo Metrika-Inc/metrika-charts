@@ -1,5 +1,5 @@
 import React from 'react';
 
-export const ChartWrapper: React.FC = ({ children }) => {
-   return <div style={{ width: '100%', height: 400 }}>{children}</div>;
+export const ChartWrapper: React.FC<{ height?: string }> = ({ children, height = 400 }) => {
+   return <div style={{ marginBottom:16, width: '100%', height, outline: '1px solid #cfdfea' }}>{children}</div>;
 };

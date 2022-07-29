@@ -1,12 +1,11 @@
-import { PartialTheme } from '@metrika/elastic-charts';
 import { palettes } from './palette';
 
 type ColorMaker = (x: number) => string;
 
-export const indexInterpolatedFillColor = (colorMaker: ColorMaker) => (d: any, i: number, a: any[]) =>
+export const indexInterpolatedFillColor = (colorMaker: ColorMaker) => (d: unknown, i: number, a: unknown[]) =>
    colorMaker(i / (a.length + 1));
 
-export function hueInterpolator(colors: any[]) {
+export function hueInterpolator(colors: ([number, number, number] | [number, number, number, number])[]) {
    return (d: number) => {
       const index = Math.round(d * 255);
       const [r, g, b, a] = colors[index];
