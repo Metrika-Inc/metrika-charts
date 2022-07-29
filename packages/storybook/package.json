@@ -7,7 +7,7 @@
     "build": "build-storybook"
   },
   "dependencies": {
-    "@metrika/elastic-charts": "^31.7.1",
+    "@metrika/elastic-charts": "^31.7.2",
     "@metrika/metrika-charts": "workspace:*",
     "@babel/core": "^7.18.9",
     "@storybook/addon-actions": "^6.5.9",
