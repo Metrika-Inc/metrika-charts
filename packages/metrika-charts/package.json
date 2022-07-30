@@ -2,19 +2,19 @@
    "name": "@metrika/metrika-charts",
    "version": "0.0.1",
    "license": "Apache-2.0",
-   "private": true,
-   "type": "module",
-   "main": "build/index.js",
+   "main": "cjs/index.js",
    "module": "build/index.js",
    "types": "build/index.d.ts",
    "scripts": {
-      "build:clean": "rimraf build",
+      "build:clean": "rimraf build cjs",
       "build:css": "sass ./src/metrika-theme.scss ./build/metrika-theme.css",
+      "build:es5": "tsc -p tsconfig.es5.json",
       "build:es6": "tsc -p tsconfig.json",
-      "build": "npm run build:clean && npm run build:es6 && npm run build:css",
+      "build": "npm run build:clean && npm run build:es6 && npm run build:es5 && npm run build:css",
       "start": "concurrently --names 'tsc,eslint' -c 'bgMagenta,bgBlue' 'tsc --watch' 'pnpm run lint'",
       "lint": "esw -w --ext .ts,.tsx ./src",
-      "test": "cross-env NODE_OPTIONS=--experimental-vm-modules jest"
+      "test": "cross-env NODE_OPTIONS=--experimental-vm-modules jest",
+      "publish": "npm publish --access public"
    },
    "sideEffects": false,
    "dependencies": {
