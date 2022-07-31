@@ -1,9 +1,8 @@
-import { BandFillColorAccessorInput, Chart, Goal } from '@metrika/elastic-charts';
+import { Chart, Goal } from '@metrika/elastic-charts';
 import React, { useCallback, useMemo } from 'react';
 import { useTheme, useUniqueId } from '../../../../_shared';
 import { GaugeProps } from '../../data';
-
-const tickValueFormatter = ({ value }: BandFillColorAccessorInput) => String(value);
+import { gaugeFormat } from '../../format';
 
 const ElasticGauge: React.FC<GaugeProps> = ({ className, id, data, format }) => {
    const { actual } = data;
@@ -31,6 +30,11 @@ const ElasticGauge: React.FC<GaugeProps> = ({ className, id, data, format }) => 
       [fontFamily, target, actualFillColor, targetFillColor, type, theme],
    );
 
+   const tickValueFormatter = useCallback(
+      ({ value }: { value: number }) => gaugeFormat(value, format.valueUnit),
+      [format.valueUnit],
+   );
+
    return (
       /* Fix elastic charts aplha full canvas even if 180° goal chart */
       <div style={{ width: '100%', height: '100%', overflow: 'hidden' }}>
@@ -48,7 +52,7 @@ const ElasticGauge: React.FC<GaugeProps> = ({ className, id, data, format }) => 
                   bandFillColor={bandFillColor}
                   labelMajor=""
                   labelMinor=""
-                  centralMajor={`${actual}`}
+                  centralMajor={tickValueFormatter({ value: actual })}
                   centralMinor={``}
                   config={config}
                />

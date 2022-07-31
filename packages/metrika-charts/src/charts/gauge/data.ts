@@ -4,7 +4,12 @@ export interface GaugeData {
    actual: number;
 }
 
+export type GaugeUnit = 'GB' | 'MB' | 'bytes' | 'Ghz' | 'Mhz' | 'number';
+
 export interface GaugeFormat {
+   valueId: string;
+   /* valueUnit default is 'number' */
+   valueUnit?: GaugeUnit;
    /**
     * Type choose colors from theme/defaults
     * setting bands color or actual color overrides theme colors
