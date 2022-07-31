@@ -7,5 +7,5 @@ export function gaugeFormat(value: number, valueUnit?: GaugeUnit): string {
    if (valueUnit === 'GB') return `${d3.format('.2f')(value)} GB`;
    if (valueUnit === 'Mhz') return `${d3.format('.2f')(value / 1024)} Ghz`;
    if (valueUnit === 'Ghz') return `${d3.format('.2f')(value)} Ghz`;
-   return String(valueUnit);
+   return String(value);
 }

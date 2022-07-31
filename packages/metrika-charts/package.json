@@ -1,6 +1,6 @@
 {
    "name": "@metrika/metrika-charts",
-   "version": "0.0.2",
+   "version": "0.0.3",
    "license": "Apache-2.0",
    "main": "cjs/index.js",
    "module": "build/index.js",
