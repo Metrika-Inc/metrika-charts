@@ -20,7 +20,7 @@ const ElasticGauge: React.FC<GaugeProps> = ({ className, id, data, format }) => 
    const {
       bands,
       base,
-      ticks,
+      ticks: rawTicks,
       fontFamily,
       target,
       targetFillColor,
@@ -30,14 +30,21 @@ const ElasticGauge: React.FC<GaugeProps> = ({ className, id, data, format }) => 
       valueUnit,
    } = format;
 
-   const actual = valueUnit === 'percent' ? rawActual * 100 : rawActual;
+   const actual = useMemo(() => (valueUnit === 'percent' ? rawActual * 100 : rawActual), [rawActual, valueUnit]);
+   const ticks = useMemo(
+      () => (valueUnit === 'percent' ? rawTicks.map((t) => t * 100) : rawTicks),
+      [rawTicks, valueUnit],
+   );
 
    const type =
       rawType !== 'dynamic' ? rawType : Array.isArray(typeThresholds) ? calculateType(typeThresholds, actual) : 'ok';
 
    const theme = useTheme().chart.gauge;
    const uId = useUniqueId();
-   const bandsData = useMemo(() => bands.map(({ value }) => value), [bands]);
+   const bandsData = useMemo(
+      () => bands.map(({ value }) => (valueUnit === 'percent' ? value * 100 : value)),
+      [valueUnit, bands],
+   );
    const bandFillColor = useCallback(
       ({ value }) => {
          const band = bands.find(({ value: bandValue }) => bandValue === value);
