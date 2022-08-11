@@ -4,7 +4,7 @@ export interface GaugeData {
    actual: number;
 }
 
-export type GaugeUnit = 'GB' | 'MB' | 'bytes' | 'Ghz' | 'Mhz' | 'number';
+export type GaugeUnit = 'GB' | 'MB' | 'bytes' | 'Ghz' | 'Mhz' | 'number' | 'percent' | 'percent100';
 
 export interface GaugeFormat {
    valueId: string;
@@ -14,7 +14,8 @@ export interface GaugeFormat {
     * Type choose colors from theme/defaults
     * setting bands color or actual color overrides theme colors
     **/
-   type: 'ok' | 'warning' | 'error';
+   type: 'ok' | 'warning' | 'error' | 'dynamic';
+   typeThresholds?: number[];
    base: number;
    target?: number;
    ticks: number[];

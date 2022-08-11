@@ -21,6 +21,9 @@ const Template: ComponentStory<typeof Gauge> = (args: MetrikaGaugeProps) => <Gau
 export const GaugeElastic1 = Template.bind({});
 export const GaugeElastic2 = Template.bind({});
 export const GaugeElastic3 = Template.bind({});
+export const GaugeElastic4 = Template.bind({});
+export const GaugeElastic5 = Template.bind({});
+export const GaugeElastic6 = Template.bind({});
 
 GaugeElastic1.storyName = 'Gauge Ok (elastic)';
 GaugeElastic1.args = {
@@ -59,4 +62,46 @@ GaugeElastic3.args = {
       type: 'error',
    } as MetrikaGaugeProps['format'],
    data: { actual: 4850 } as MetrikaGaugeProps['data'],
+};
+
+GaugeElastic4.storyName = 'Gauge Dynamic Ok (elastic)';
+GaugeElastic4.args = {
+   format: {
+      valueId: 'cpy_busy',
+      valueUnit: 'percent100',
+      base: 0,
+      bands: [{ value: 100 }],
+      ticks: [0, 25, 50, 75, 100],
+      typeThresholds: [0,80,90],
+      type: 'dynamic',
+   } as MetrikaGaugeProps['format'],
+   data: { actual: 40 } as MetrikaGaugeProps['data'],
+};
+
+GaugeElastic5.storyName = 'Gauge Dynamic Warning (elastic)';
+GaugeElastic5.args = {
+   format: {
+      valueId: 'cpy_busy',
+      valueUnit: 'percent100',
+      base: 0,
+      bands: [{ value: 100 }],
+      ticks: [0, 25, 50, 75, 100],
+      typeThresholds: [0,80,90],
+      type: 'dynamic',
+   } as MetrikaGaugeProps['format'],
+   data: { actual: 85 } as MetrikaGaugeProps['data'],
+};
+
+GaugeElastic6.storyName = 'Gauge Dynamic Error (elastic)';
+GaugeElastic6.args = {
+   format: {
+      valueId: 'cpy_busy',
+      valueUnit: 'percent',
+      base: 0,
+      bands: [{ value: 100 }],
+      ticks: [0, 25, 50, 75, 100],
+      typeThresholds: [0,80,90],
+      type: 'dynamic',
+   } as MetrikaGaugeProps['format'],
+   data: { actual: 0.95 } as MetrikaGaugeProps['data'],
 };

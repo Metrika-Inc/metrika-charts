@@ -4,9 +4,36 @@ import { useTheme, useUniqueId } from '../../../../_shared';
 import { GaugeProps } from '../../data';
 import { gaugeFormat } from '../../format';
 
+//todo move to record
+function calculateType(thresolds: number[], actual: number) {
+   if (thresolds.length > 1 && actual < thresolds[1]) {
+      return 'ok';
+   }
+   if (thresolds.length > 2 && actual < thresolds[2]) {
+      return 'warning';
+   }
+   return 'error';
+}
+
 const ElasticGauge: React.FC<GaugeProps> = ({ className, id, data, format }) => {
-   const { actual } = data;
-   const { bands, base, ticks, fontFamily, target, targetFillColor, actualFillColor, type } = format;
+   const { actual: rawActual } = data;
+   const {
+      bands,
+      base,
+      ticks,
+      fontFamily,
+      target,
+      targetFillColor,
+      actualFillColor,
+      type: rawType,
+      typeThresholds,
+      valueUnit,
+   } = format;
+
+   const actual = valueUnit === 'percent' ? rawActual * 100 : rawActual;
+
+   const type =
+      rawType !== 'dynamic' ? rawType : Array.isArray(typeThresholds) ? calculateType(typeThresholds, actual) : 'ok';
 
    const theme = useTheme().chart.gauge;
    const uId = useUniqueId();
