@@ -89,7 +89,7 @@ GaugeElastic5.args = {
       typeThresholds: [0,80,90],
       type: 'dynamic',
    } as MetrikaGaugeProps['format'],
-   data: { actual: 85 } as MetrikaGaugeProps['data'],
+   data: { actual: 85.55 } as MetrikaGaugeProps['data'],
 };
 
 GaugeElastic6.storyName = 'Gauge Dynamic Error (elastic)';
@@ -103,5 +103,5 @@ GaugeElastic6.args = {
       typeThresholds: [0,80,90],
       type: 'dynamic',
    } as MetrikaGaugeProps['format'],
-   data: { actual: 0.95 } as MetrikaGaugeProps['data'],
+   data: { actual: 0.9566 } as MetrikaGaugeProps['data'],
 };
