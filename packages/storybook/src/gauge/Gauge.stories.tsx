@@ -82,14 +82,14 @@ GaugeElastic5.storyName = 'Gauge Dynamic Warning (elastic)';
 GaugeElastic5.args = {
    format: {
       valueId: 'cpy_busy',
-      valueUnit: 'percent100',
+      valueUnit: 'percent',
       base: 0,
-      bands: [{ value: 100 }],
-      ticks: [0, 25, 50, 75, 100],
-      typeThresholds: [0,80,90],
+      bands: [{ value: 1 }],
+      ticks: [0, 0.25, 0.50, 0.75, 1],
+      typeThresholds: [0,0.80,0.90],
       type: 'dynamic',
    } as MetrikaGaugeProps['format'],
-   data: { actual: 85.55 } as MetrikaGaugeProps['data'],
+   data: { actual: 0.85 } as MetrikaGaugeProps['data'],
 };
 
 GaugeElastic6.storyName = 'Gauge Dynamic Error (elastic)';

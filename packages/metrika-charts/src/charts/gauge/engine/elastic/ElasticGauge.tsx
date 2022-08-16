@@ -37,7 +37,7 @@ const ElasticGauge: React.FC<GaugeProps> = ({ className, id, data, format }) => 
    );
 
    const type =
-      rawType !== 'dynamic' ? rawType : Array.isArray(typeThresholds) ? calculateType(typeThresholds, actual) : 'ok';
+      rawType !== 'dynamic' ? rawType : Array.isArray(typeThresholds) ? calculateType(typeThresholds, rawActual) : 'ok';
 
    const theme = useTheme().chart.gauge;
    const uId = useUniqueId();
@@ -47,12 +47,16 @@ const ElasticGauge: React.FC<GaugeProps> = ({ className, id, data, format }) => 
    );
    const bandFillColor = useCallback(
       ({ value }) => {
-         const band = bands.find(({ value: bandValue }) => bandValue === value);
+         const band = bandsData.find((bandValue) => bandValue === value);
          if (!band) return 'transparent';
-         return band?.color || theme.types[type].bandsColor[bands.indexOf(band) % theme.types[type].bandsColor.length];
+         return (
+            bands[bandsData.indexOf(band)]?.color ||
+            theme.types[type].bandsColor[bandsData.indexOf(band) % theme.types[type].bandsColor.length]
+         );
       },
-      [bands, theme, type],
+      [bandsData, theme, type],
    );
+
    const config = useMemo(
       () => ({
          angleStart: Math.PI,
