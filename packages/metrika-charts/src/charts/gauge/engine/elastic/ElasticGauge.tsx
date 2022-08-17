@@ -54,7 +54,7 @@ const ElasticGauge: React.FC<GaugeProps> = ({ className, id, data, format }) => 
             theme.types[type].bandsColor[bandsData.indexOf(band) % theme.types[type].bandsColor.length]
          );
       },
-      [bandsData, theme, type],
+      [bandsData, theme, type, bands],
    );
 
    const config = useMemo(
