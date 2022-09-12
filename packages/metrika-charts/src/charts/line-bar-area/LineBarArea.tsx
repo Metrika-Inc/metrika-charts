@@ -10,10 +10,7 @@ const engines = {
 
 export interface MetrikaLineBarAreaProps extends LineBarAreaProps {
    engine?: keyof typeof engines;
-   className?: string;
    fallback?: SuspenseProps['fallback'];
-   syncTooltipEnabled?: boolean;
-   syncTooltipVisible?: boolean;
 }
 
 export const MetrikaLineBarArea: React.FC<MetrikaLineBarAreaProps> & { engines: Array<keyof typeof engines> } = ({

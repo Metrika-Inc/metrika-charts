@@ -1,5 +1,5 @@
 import { metrikaTheme } from '@metrika/metrika-charts';
-import { LineBarAreaData, LineBarAreaProps } from '@metrika/metrika-charts/build/charts/line-bar-area/data';
+import { LineBarAreaData, LineBarAreaProps } from '@metrika/metrika-charts';
 
 const data: LineBarAreaData = [
    [
@@ -203,7 +203,7 @@ const data: LineBarAreaData = [
 ];
 
 export const LineBarMock1: LineBarAreaProps = {
-   meta: {
+   format: {
       domainUnit: 'datetime',
       seriesId: ['sender_count', 'receiver_count'],
       seriesInfo: {
@@ -232,7 +232,7 @@ export const LineBarMock1: LineBarAreaProps = {
    data,
 };
 export const LineBarMock2: LineBarAreaProps = {
-   meta: {
+   format: {
       domainUnit: 'datetime',
       seriesId: ['sender_count', 'receiver_count'],
       seriesInfo: {
@@ -261,7 +261,7 @@ export const LineBarMock2: LineBarAreaProps = {
    data,
 };
 export const LineBarMock3: LineBarAreaProps = {
-   meta: {
+   format: {
       domainUnit: 'datetime',
       seriesId: ['sender_count', 'receiver_count'],
       seriesInfo: {
@@ -292,7 +292,7 @@ export const LineBarMock3: LineBarAreaProps = {
    data,
 };
 export const LineBarMock4: LineBarAreaProps = {
-   meta: {
+   format: {
       domainUnit: 'datetime',
       seriesId: ['sender_count', 'receiver_count'],
       seriesInfo: {
@@ -321,7 +321,7 @@ export const LineBarMock4: LineBarAreaProps = {
    data,
 };
 export const LineBarMock41: LineBarAreaProps = {
-   meta: {
+   format: {
       domainUnit: 'datetime',
       seriesId: ['sender_count', 'receiver_count'],
       seriesInfo: {
@@ -357,7 +357,7 @@ export const LineBarMock41: LineBarAreaProps = {
    data,
 };
 export const LineBarMock5: LineBarAreaProps = {
-   meta: {
+   format: {
       domainUnit: 'datetime',
       seriesId: ['total_online_voting_stake_percentage'],
       seriesInfo: {
@@ -514,7 +514,7 @@ const data3: LineBarAreaData = [
 ];
 
 export const LineBarMock42: LineBarAreaProps = {
-   meta: {
+   format: {
       domainUnit: 'datetime',
       seriesId: ['total_transactions', 'incoming_node_fee', 'incoming_transfer', 'incoming_network_fee'],
       seriesInfo: {
@@ -600,7 +600,7 @@ const dataMockArea: LineBarAreaData = [
 ];
 
 export const LineBarMockArea: LineBarAreaProps = {
-   meta: {
+   format: {
       domainUnit: 'datetime',
       seriesId: ['0.0.3', '0.0.4','Rest of Network'],
       seriesInfo: {
@@ -638,7 +638,7 @@ export const LineBarMockArea: LineBarAreaProps = {
 };
 
 export const LineBarMockArea2: LineBarAreaProps = {
-   meta: {
+   format: {
       domainUnit: 'datetime',
       seriesId: ['0.0.3', '0.0.4','Rest of Network'],
       seriesInfo: {
@@ -673,7 +673,7 @@ export const LineBarMockArea2: LineBarAreaProps = {
 };
 
 export const LineBarMockArea3: LineBarAreaProps = {
-   meta: {
+   format: {
       domainUnit: 'datetime',
       seriesId: ['0.0.3', '0.0.4','Rest of Network'],
       seriesInfo: {

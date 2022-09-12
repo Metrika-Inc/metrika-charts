@@ -1,3 +1,4 @@
+import React from 'react';
 import { ComponentStory, ComponentMeta } from '@storybook/react';
 import { MetrikaLineBarAreaProps, MetrikaLineBarArea } from '@metrika/metrika-charts';
 import { LineBarMock42 } from "./mocks";

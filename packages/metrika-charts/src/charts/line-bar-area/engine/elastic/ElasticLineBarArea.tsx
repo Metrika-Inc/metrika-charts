@@ -20,13 +20,7 @@ import { formatForUnit, scaleTypeForUnit } from './format';
 import { calcChartRotation, sameSide } from './rotation';
 import { chartTheme, gridStyle, lineStyles } from './style';
 
-const ElasticLineBarArea = ({
-   data,
-   meta,
-   className,
-   syncTooltipEnabled,
-   syncTooltipVisible,
-}: LineBarAreaProps & { className?: string; syncTooltipEnabled?: boolean; syncTooltipVisible?: boolean }) => {
+const ElasticLineBarArea = ({ data, format, className, syncTooltipEnabled, syncTooltipVisible }: LineBarAreaProps) => {
    const { ref, elasticXYEventsProps } = useElasticSyncTooltips({
       enabled: syncTooltipEnabled,
       visible: syncTooltipVisible,
@@ -34,24 +28,24 @@ const ElasticLineBarArea = ({
 
    const ChartsPalette = useTheme().data.colors;
 
-   if (meta === undefined) {
+   if (format === undefined) {
       return null;
    }
 
    const groups = new Set<string | undefined>();
-   meta.seriesId.forEach((id) => {
-      if (meta.seriesInfo) {
-         if (meta.seriesInfo[id])
+   format.seriesId.forEach((id) => {
+      if (format.seriesInfo) {
+         if (format.seriesInfo[id])
             //todo matt check if ok
-            groups.add(meta.seriesInfo[id]?.axisName);
+            groups.add(format.seriesInfo[id]?.axisName);
       }
    });
 
    const axisDomainGroups = groups;
-   const axes = meta.axes?.map((axis, i) => {
+   const axes = format.axes?.map((axis, i) => {
       let tickFormat: TickFormatter<Datum> | undefined = undefined;
       let labelFormat: TickFormatter<Datum> | undefined = undefined;
-      const domainSide = meta.domainSide || 'bottom';
+      const domainSide = format.domainSide || 'bottom';
 
       let domain: YDomainRange | undefined = undefined;
 
@@ -59,7 +53,7 @@ const ElasticLineBarArea = ({
       if (sameSide(axis.position, domainSide)) {
          axisDomainGroups.delete(axis.axisName);
 
-         tickFormat = formatForUnit(meta.domainUnit, data);
+         tickFormat = formatForUnit(format.domainUnit, data);
       } else {
          if (axis.domain) {
             domain = { fit: axis.domain.fit, min: axis.domain.min, max: axis.domain.max };
@@ -116,8 +110,8 @@ const ElasticLineBarArea = ({
    // so we keep track of which groups get axes that define their domain formatting,
    // and then we create hidden axis for the rest
    axisDomainGroups.forEach((groupId, i) => {
-      const domainSide = meta.domainSide || 'bottom';
-      const tickFormat = formatForUnit(meta.domainUnit, data);
+      const domainSide = format.domainSide || 'bottom';
+      const tickFormat = formatForUnit(format.domainUnit, data);
 
       axes?.push(
          <Axis
@@ -139,20 +133,20 @@ const ElasticLineBarArea = ({
             showLegend
             theme={chartTheme}
             legendPosition={Position.Top}
-            rotation={calcChartRotation(meta.domainSide)}
+            rotation={calcChartRotation(format.domainSide)}
             {...elasticXYEventsProps}
          />
          {chartHasData && axes}
          {data.map((series, i) => {
-            const seriesId = meta.seriesId[i];
-            const seriesInfo = meta.seriesInfo[seriesId];
+            const seriesId = format.seriesId[i];
+            const seriesInfo = format.seriesInfo[seriesId];
 
             const seriesProps = {
                key: i,
                id: seriesId,
                name: seriesInfo?.name || seriesId, //todo introduce formatter for lenged name textUiUppercase
                color: seriesInfo?.color || ChartsPalette[i],
-               xScaleType: scaleTypeForUnit(meta.domainUnit),
+               xScaleType: scaleTypeForUnit(format.domainUnit),
                yScaleType: ScaleType.Linear,
                xAccessor: 0,
                yAccessors: [1],

@@ -2,6 +2,7 @@ import { StackMode } from '@metrika/elastic-charts/dist/_es6/chart_types/xy_char
 import { Color, Id } from '../../_shared/types/alias';
 import { Position } from '../../_shared/types/positions';
 import { Unit } from '../../_shared/types/units';
+import { ChartCommonProps } from '../types';
 
 export type Point<X = number, Y = number | null> = [X, Y];
 
@@ -45,7 +46,7 @@ export interface LineBarAreaMeta {
    seriesInfo: Record<Id, SerieInfo | undefined>;
 }
 
-export interface LineBarAreaProps {
+export interface LineBarAreaProps extends ChartCommonProps {
    data: LineBarAreaData;
-   meta: LineBarAreaMeta;
+   format: LineBarAreaMeta;
 }
