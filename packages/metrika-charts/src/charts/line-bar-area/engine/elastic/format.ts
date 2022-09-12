@@ -13,6 +13,7 @@ export const scaleTypeForUnit = (unit: Unit): XScaleType => {
    }
    return ScaleType.Ordinal;
 };
+
 /**
  * Used to determine the formatting function for a given unit
  * The datetime unit takes into account the time range of the data
@@ -22,9 +23,9 @@ export const scaleTypeForUnit = (unit: Unit): XScaleType => {
  */
 export const formatForUnit = (unit: Unit, data: Serie[]) => {
    if (unit === 'datetime') {
-      const series = data[0];
+      const series = data.find((s) => s.length > 0);
       // TODO - do this a better way
-      if (series.length === 0) {
+      if (!series || series.length === 0) {
          return (a: Datum) => a;
       }
       const rangeMin = series[0][0];
