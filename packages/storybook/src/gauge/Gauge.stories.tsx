@@ -24,6 +24,9 @@ export const GaugeElastic3 = Template.bind({});
 export const GaugeElastic4 = Template.bind({});
 export const GaugeElastic5 = Template.bind({});
 export const GaugeElastic6 = Template.bind({});
+export const GaugeElastic7 = Template.bind({});
+export const GaugeElastic8 = Template.bind({});
+export const GaugeElastic9 = Template.bind({});
 
 GaugeElastic1.storyName = 'Gauge Ok (elastic)';
 GaugeElastic1.args = {
@@ -102,6 +105,49 @@ GaugeElastic6.args = {
       ticks: [0, 0.25, 0.50, 0.75, 1],
       typeThresholds: [0,0.80,0.90],
       type: 'dynamic',
+   } as MetrikaGaugeProps['format'],
+   data: { actual: 0.9566 } as MetrikaGaugeProps['data'],
+};
+
+//reverse
+GaugeElastic7.storyName = 'Gauge Dynamic-reverse Error (elastic)';
+GaugeElastic7.args = {
+   format: {
+      valueId: 'cpy_busy',
+      valueUnit: 'percent100',
+      base: 0,
+      bands: [{ value: 100 }],
+      ticks: [0, 25, 50, 75, 100],
+      typeThresholds: [0,80,90],
+      type: 'dynamic-reverse',
+   } as MetrikaGaugeProps['format'],
+   data: { actual: 40 } as MetrikaGaugeProps['data'],
+};
+
+GaugeElastic8.storyName = 'Gauge Dynamic-reverse Warning (elastic)';
+GaugeElastic8.args = {
+   format: {
+      valueId: 'cpy_busy',
+      valueUnit: 'percent',
+      base: 0,
+      bands: [{ value: 1 }],
+      ticks: [0, 0.25, 0.50, 0.75, 1],
+      typeThresholds: [0,0.80,0.90],
+      type: 'dynamic-reverse',
+   } as MetrikaGaugeProps['format'],
+   data: { actual: 0.85 } as MetrikaGaugeProps['data'],
+};
+
+GaugeElastic9.storyName = 'Gauge Dynamic-reverse Ok (elastic)';
+GaugeElastic9.args = {
+   format: {
+      valueId: 'cpy_busy',
+      valueUnit: 'percent',
+      base: 0,
+      bands: [{ value: 1 }],
+      ticks: [0, 0.25, 0.50, 0.75, 1],
+      typeThresholds: [0,0.80,0.90],
+      type: 'dynamic-reverse',
    } as MetrikaGaugeProps['format'],
    data: { actual: 0.9566 } as MetrikaGaugeProps['data'],
 };

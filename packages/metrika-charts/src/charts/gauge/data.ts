@@ -14,7 +14,7 @@ export interface GaugeFormat {
     * Type choose colors from theme/defaults
     * setting bands color or actual color overrides theme colors
     **/
-   type: 'ok' | 'warning' | 'error' | 'dynamic';
+   type: 'ok' | 'warning' | 'error' | 'dynamic' | 'dynamic-reverse';
    typeThresholds?: number[];
    base: number;
    target?: number;

@@ -15,6 +15,16 @@ function calculateType(thresolds: number[], actual: number) {
    return 'error';
 }
 
+function calculateTypeReverse(thresolds: number[], actual: number) {
+   if (thresolds.length > 1 && actual < thresolds[1]) {
+      return 'error';
+   }
+   if (thresolds.length > 2 && actual < thresolds[2]) {
+      return 'warning';
+   }
+   return 'ok';
+}
+
 const ElasticGauge: React.FC<GaugeProps> = ({ className, id, data, format }) => {
    const { actual: rawActual } = data;
    const {
@@ -37,7 +47,13 @@ const ElasticGauge: React.FC<GaugeProps> = ({ className, id, data, format }) => 
    );
 
    const type =
-      rawType !== 'dynamic' ? rawType : Array.isArray(typeThresholds) ? calculateType(typeThresholds, rawActual) : 'ok';
+      rawType !== 'dynamic' && rawType !== 'dynamic-reverse'
+         ? rawType
+         : Array.isArray(typeThresholds)
+         ? rawType === 'dynamic-reverse'
+            ? calculateTypeReverse(typeThresholds, rawActual)
+            : calculateType(typeThresholds, rawActual)
+         : 'ok';
 
    const theme = useTheme().chart.gauge;
    const uId = useUniqueId();

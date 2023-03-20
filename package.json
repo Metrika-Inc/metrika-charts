@@ -9,7 +9,7 @@
     "test": "pnpm run -r test",
     "charts:build": "pnpm run --filter metrika-charts build",
     "charts:start": "pnpm run --filter metrika-charts start",
-    "storybook:start": "pnpm run --filter storybook start",
+    "storybook:start": "NODE_OPTIONS=--openssl-legacy-provider pnpm run --filter storybook start",
     "storybook:build": "pnpm run --filter storybook build",
     "outdated" : "pnpm -r outdated"
   },
