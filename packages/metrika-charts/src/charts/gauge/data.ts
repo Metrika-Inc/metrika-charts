@@ -26,6 +26,11 @@ export interface GaugeFormat {
    actualFillColor?: string;
    targetFillColor?: string;
    fontFamily?: string;
+
+   //ticks and main label color
+   tickColor?: string;
+   tickTextColor?: string;
+   labelsColor?: string;
 }
 
 export interface GaugeProps extends ChartCommonProps {

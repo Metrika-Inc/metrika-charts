@@ -1,4 +1,5 @@
-import { Chart, Goal } from '@metrika/elastic-charts';
+import { Chart, Goal, RecursivePartial } from '@metrika/elastic-charts';
+import { Config } from '@metrika/elastic-charts/dist/_es6/chart_types/goal_chart/layout/types/config_types';
 import React, { useCallback, useMemo } from 'react';
 import { useTheme, useUniqueId } from '../../../../_shared';
 import { GaugeProps } from '../../data';
@@ -38,6 +39,9 @@ const ElasticGauge: React.FC<GaugeProps> = ({ className, id, data, format }) => 
       type: rawType,
       typeThresholds,
       valueUnit,
+      tickColor,
+      tickTextColor,
+      labelsColor,
    } = format;
 
    const actual = useMemo(() => (valueUnit === 'percent' ? rawActual * 100 : rawActual), [rawActual, valueUnit]);
@@ -73,15 +77,18 @@ const ElasticGauge: React.FC<GaugeProps> = ({ className, id, data, format }) => 
       [bandsData, theme, type, bands],
    );
 
-   const config = useMemo(
+   const config: RecursivePartial<Config> = useMemo(
       () => ({
          angleStart: Math.PI,
          angleEnd: 0,
          fontFamily: fontFamily || theme.fontFamily,
          actualFillColor: actualFillColor || theme.types[type].actualFillColor,
          targetFillColor: target ? targetFillColor : 'transparent',
+         tickColor: tickColor,
+         tickTextColor: tickTextColor,
+         labelsColor: labelsColor,
       }),
-      [fontFamily, target, actualFillColor, targetFillColor, type, theme],
+      [fontFamily, target, actualFillColor, targetFillColor, type, theme, tickColor, tickTextColor, labelsColor],
    );
 
    const tickValueFormatter = useCallback(

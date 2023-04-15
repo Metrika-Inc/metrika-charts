@@ -5,4 +5,4 @@ export declare const Positions: Readonly<{
    Right: 'right';
 }>;
 
-export type Position = typeof Positions[keyof typeof Positions];
+export type Position = (typeof Positions)[keyof typeof Positions];
