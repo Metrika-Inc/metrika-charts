@@ -5,7 +5,7 @@ specifiers:
   '@babel/preset-env': ^7.21.4
   '@babel/preset-typescript': ^7.21.4
   '@jest/types': ^29.5.0
-  '@metrika/elastic-charts': ^31.7.4
+  '@metrika/elastic-charts': ^31.7.5
   '@nivo/core': ^0.80.0
   '@nivo/line': ^0.80.0
   '@nivo/tooltip': ^0.80.0
@@ -31,7 +31,7 @@ specifiers:
   typescript: ^5.0.4
 
 dependencies:
-  '@metrika/elastic-charts': 31.7.4_3k25dfbgqbh5cjdt2kbkjmeb2i
+  '@metrika/elastic-charts': 31.7.5_3k25dfbgqbh5cjdt2kbkjmeb2i
   '@nivo/core': 0.80.0_mplowcwistgurqk5np2zfnmdhu
   '@nivo/line': 0.80.0_bbepigeeawsraagdq4iv6nrolu
   '@nivo/tooltip': 0.80.0_ggl6tiz3pu2tpxsvvlabs2yb2e
@@ -1617,8 +1617,8 @@ packages:
       '@jridgewell/sourcemap-codec': 1.4.14
     dev: true
 
-  /@metrika/elastic-charts/31.7.4_3k25dfbgqbh5cjdt2kbkjmeb2i:
-    resolution: {integrity: sha512-oodM20Z5F15BkldBo/+ASyv0ShtXqf9LjAMRaylItm7QZDye+BfRlUhvxxRKJ3agFPIzTfCVrI5QqCjBDkzrIA==}
+  /@metrika/elastic-charts/31.7.5_3k25dfbgqbh5cjdt2kbkjmeb2i:
+    resolution: {integrity: sha512-0s4BJD1BQvV+rc9oi8aHoANMlGQTs53GpLdKyu8uXrSyKUa/Eb37qquAC4uspxLF9UJSZrD6fQPn6jykdLwxRw==}
     peerDependencies:
       dayjs: ^1.10.7
       react: ^16.12.0 || ^17.0.2

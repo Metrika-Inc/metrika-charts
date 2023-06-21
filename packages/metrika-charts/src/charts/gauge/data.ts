@@ -2,6 +2,7 @@ import { ChartCommonProps } from '../types';
 
 export interface GaugeData {
    actual: number;
+   bottomLabel?: string;
 }
 
 export type GaugeUnit = 'GB' | 'MB' | 'bytes' | 'Ghz' | 'Mhz' | 'number' | 'percent' | 'percent100';
@@ -14,7 +15,7 @@ export interface GaugeFormat {
     * Type choose colors from theme/defaults
     * setting bands color or actual color overrides theme colors
     **/
-   type: 'ok' | 'warning' | 'error' | 'dynamic' | 'dynamic-reverse';
+   type: 'blue' | 'ok' | 'warning' | 'error' | 'dynamic' | 'dynamic-reverse';
    typeThresholds?: number[];
    base: number;
    target?: number;

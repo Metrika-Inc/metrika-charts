@@ -98,27 +98,41 @@ const ElasticGauge: React.FC<GaugeProps> = ({ className, id, data, format }) => 
 
    return (
       /* Fix elastic charts aplha full canvas even if 180° goal chart */
-      <div style={{ width: '100%', height: '100%', overflow: 'hidden' }}>
-         <div style={{ width: '100%', height: '180%' }}>
-            <Chart className={className}>
-               <Goal
-                  id={id || uId}
-                  subtype={'goal'}
-                  base={base}
-                  actual={actual}
-                  bands={bandsData}
-                  ticks={ticks}
-                  target={target}
-                  tickValueFormatter={tickValueFormatter}
-                  bandFillColor={bandFillColor}
-                  labelMajor=""
-                  labelMinor=""
-                  centralMajor={tickValueFormatter({ value: actual })}
-                  centralMinor={``}
-                  config={config}
-               />
-            </Chart>
+      <div style={{ width: '100%', height: '100%', display: 'flex', flexDirection: 'column' }}>
+         <div style={{ flex: 1, width: '100%', height: '100%', overflow: 'hidden' }}>
+            <div style={{ width: '100%', height: '180%' }}>
+               <Chart className={className}>
+                  <Goal
+                     id={id || uId}
+                     subtype={'goal'}
+                     base={base}
+                     actual={actual}
+                     bands={bandsData}
+                     ticks={ticks}
+                     target={valueUnit === 'percent' && target ? target * 100 : target}
+                     tickValueFormatter={tickValueFormatter}
+                     bandFillColor={bandFillColor}
+                     labelMajor="labelMajor"
+                     labelMinor="labelMinor"
+                     centralMajor={tickValueFormatter({ value: actual })}
+                     centralMinor={``}
+                     config={config}
+                  />
+               </Chart>
+            </div>
          </div>
+         {data.bottomLabel && (
+            <p
+               style={{
+                  textAlign: 'center',
+                  marginBottom: '8px',
+                  fontFamily: fontFamily || theme.fontFamily,
+                  color: tickTextColor,
+               }}
+            >
+               {data.bottomLabel}
+            </p>
+         )}
       </div>
    );
 };

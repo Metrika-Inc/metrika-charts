@@ -2,7 +2,7 @@ lockfileVersion: 5.4
 
 specifiers:
   '@babel/core': ^7.21.4
-  '@metrika/elastic-charts': ^31.7.4
+  '@metrika/elastic-charts': ^31.7.5
   '@metrika/metrika-charts': workspace:*
   '@storybook/addon-actions': ^6.5.9
   '@storybook/addon-essentials': ^6.5.9
@@ -15,7 +15,7 @@ specifiers:
 
 dependencies:
   '@babel/core': 7.21.4
-  '@metrika/elastic-charts': 31.7.4_sfoxds7t5ydpegc3knd667wn6m
+  '@metrika/elastic-charts': 31.7.5_sfoxds7t5ydpegc3knd667wn6m
   '@metrika/metrika-charts': link:../metrika-charts
   '@storybook/addon-actions': 6.5.9_sfoxds7t5ydpegc3knd667wn6m
   '@storybook/addon-essentials': 6.5.9_a4r7at2l6rhoe27qduvubiizle
@@ -1712,8 +1712,8 @@ packages:
     resolution: {integrity: sha512-H1rQc1ZOHANWBvPcW+JpGwr+juXSxM8Q8YCkm3GhZd8REu1fHR3z99CErO1p9pkcfcxZnMdIZdIsXkOHY0NilA==}
     dev: false
 
-  /@metrika/elastic-charts/31.7.4_sfoxds7t5ydpegc3knd667wn6m:
-    resolution: {integrity: sha512-oodM20Z5F15BkldBo/+ASyv0ShtXqf9LjAMRaylItm7QZDye+BfRlUhvxxRKJ3agFPIzTfCVrI5QqCjBDkzrIA==}
+  /@metrika/elastic-charts/31.7.5_sfoxds7t5ydpegc3knd667wn6m:
+    resolution: {integrity: sha512-0s4BJD1BQvV+rc9oi8aHoANMlGQTs53GpLdKyu8uXrSyKUa/Eb37qquAC4uspxLF9UJSZrD6fQPn6jykdLwxRw==}
     peerDependencies:
       dayjs: ^1.10.7
       react: ^16.12.0 || ^17.0.2

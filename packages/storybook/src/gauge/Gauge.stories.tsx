@@ -27,6 +27,20 @@ export const GaugeElastic6 = Template.bind({});
 export const GaugeElastic7 = Template.bind({});
 export const GaugeElastic8 = Template.bind({});
 export const GaugeElastic9 = Template.bind({});
+export const GaugeElasticBlue = Template.bind({});
+
+GaugeElasticBlue.storyName = 'Gauge Blue (elastic)';
+GaugeElasticBlue.args = {
+   format: {
+      valueId: 'ram',
+      valueUnit: 'MB',
+      base: 0,
+      bands: [{ value: 16000 }],
+      ticks: [0, 4000, 8000, 12000, 16000],
+      type: 'blue',
+   } as MetrikaGaugeProps['format'],
+   data: { actual: 3800, bottomLabel:'96 Gb Ram'} as MetrikaGaugeProps['data'],
+};
 
 GaugeElastic1.storyName = 'Gauge Ok (elastic)';
 GaugeElastic1.args = {
