@@ -44,11 +44,20 @@ const ElasticGauge: React.FC<GaugeProps> = ({ className, id, data, format }) => 
       labelsColor,
    } = format;
 
-   const actual = useMemo(() => (valueUnit === 'percent' ? rawActual * 100 : rawActual), [rawActual, valueUnit]);
-   const ticks = useMemo(
-      () => (valueUnit === 'percent' ? rawTicks.map((t) => t * 100) : rawTicks),
-      [rawTicks, valueUnit],
+   const realTarget = useMemo(
+      () => (valueUnit === 'percent' && target !== undefined ? target * 100 : target),
+      [target, valueUnit],
    );
+
+   const actual = useMemo(() => (valueUnit === 'percent' ? rawActual * 100 : rawActual), [rawActual, valueUnit]);
+   const ticks = useMemo(() => {
+      if (rawType === 'blue' && realTarget !== undefined && actual > realTarget) {
+         //dynamic ticks
+         return [0, actual / 4, actual / 2, (actual * 3) / 4, actual];
+      } else {
+         return valueUnit === 'percent' ? rawTicks.map((t) => t * 100) : rawTicks;
+      }
+   }, [rawTicks, valueUnit, rawType, realTarget, actual]);
 
    const type =
       rawType !== 'dynamic' && rawType !== 'dynamic-reverse'
@@ -61,10 +70,13 @@ const ElasticGauge: React.FC<GaugeProps> = ({ className, id, data, format }) => 
 
    const theme = useTheme().chart.gauge;
    const uId = useUniqueId();
-   const bandsData = useMemo(
-      () => bands.map(({ value }) => (valueUnit === 'percent' ? value * 100 : value)),
-      [valueUnit, bands],
-   );
+   const bandsData = useMemo(() => {
+      if (rawType === 'blue' && realTarget !== undefined && actual > realTarget) {
+         return bands.map(({ value }) => actual);
+      }
+      return bands.map(({ value }) => (valueUnit === 'percent' ? value * 100 : value));
+   }, [valueUnit, bands, rawType, realTarget, actual]);
+
    const bandFillColor = useCallback(
       ({ value }) => {
          const band = bandsData.find((bandValue) => bandValue === value);
@@ -109,11 +121,9 @@ const ElasticGauge: React.FC<GaugeProps> = ({ className, id, data, format }) => 
                      actual={actual}
                      bands={bandsData}
                      ticks={ticks}
-                     target={valueUnit === 'percent' && target ? target * 100 : target}
+                     target={realTarget}
                      tickValueFormatter={tickValueFormatter}
                      bandFillColor={bandFillColor}
-                     labelMajor="labelMajor"
-                     labelMinor="labelMinor"
                      centralMajor={tickValueFormatter({ value: actual })}
                      centralMinor={``}
                      config={config}

@@ -33,13 +33,15 @@ GaugeElasticBlue.storyName = 'Gauge Blue (elastic)';
 GaugeElasticBlue.args = {
    format: {
       valueId: 'ram',
-      valueUnit: 'MB',
+      valueUnit: 'percent',
       base: 0,
-      bands: [{ value: 16000 }],
-      ticks: [0, 4000, 8000, 12000, 16000],
+      target: 0.1,
+      targetFillColor:'transparent',
+      bands: [{ value: 0.1 }],
+      ticks: [0, 0.025,0.05, 0.075, 0.1],
       type: 'blue',
    } as MetrikaGaugeProps['format'],
-   data: { actual: 3800, bottomLabel:'96 Gb Ram'} as MetrikaGaugeProps['data'],
+   data: { actual: 0.7, bottomLabel:'96 Gb Ram'} as MetrikaGaugeProps['data'],
 };
 
 GaugeElastic1.storyName = 'Gauge Ok (elastic)';
