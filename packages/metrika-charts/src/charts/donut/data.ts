@@ -1,3 +1,5 @@
+import { ChartCommonProps } from '../types';
+
 export type Slice = {
    [k: string]: string | number;
 };
@@ -8,13 +10,19 @@ export interface DonutLayer {
    groupByKey: string;
 }
 
-export interface DonutMeta {
+export interface DonutFormat {
    showLabels: boolean;
    valueKey: string;
    layers: DonutLayer[];
+   labels?: {
+      [name: string]: string;
+   };
+   colors?: {
+      [name: string]: string;
+   };
 }
 
-export interface DonutProps {
+export interface DonutProps extends ChartCommonProps {
    data: DonutData;
-   meta: DonutMeta;
+   format: DonutFormat;
 }

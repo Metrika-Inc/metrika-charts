@@ -16,12 +16,12 @@ export const MetrikaDonut: React.FC<MetrikaDonutProps> & { engines: Array<keyof 
    fallback,
    engine,
    data,
-   meta,
+   format,
 }) => {
    const Engine = engines[engine];
    return (
       <Suspense fallback={fallback || null}>
-         <Engine data={data} meta={meta} />
+         <Engine data={data} format={format} />
       </Suspense>
    );
 };
