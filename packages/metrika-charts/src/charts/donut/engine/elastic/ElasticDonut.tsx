@@ -19,7 +19,6 @@ const ElasticDonut: React.FC<DonutProps> = ({ data, format }) => {
             groupByRollup: (d: Datum) => d[l.groupByKey],
             nodeLabel: (key: PrimitiveValue) => {
                const keyString = `${key}`;
-               console.log('keyString', keyString);
                return format.labels && format.labels[keyString] ? format.labels[keyString] : keyString;
             },
 
