@@ -1,6 +1,6 @@
 {
    "name": "@metrika/metrika-charts",
-   "version": "0.0.17",
+   "version": "0.0.18",
    "license": "Apache-2.0",
    "main": "cjs/index.js",
    "module": "build/index.js",
@@ -23,6 +23,8 @@
       "@nivo/line": "^0.80.0",
       "@nivo/treemap": "^0.80.0",
       "@nivo/tooltip": "^0.80.0",
+      "echarts-for-react": "^3.0.2",
+      "echarts": "^5.4.3",
       "d3-format": "^3.1.0",
       "deepmerge": "^4.3.1",
       "dayjs": "^1.11.7",

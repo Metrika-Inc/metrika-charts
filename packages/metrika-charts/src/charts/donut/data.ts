@@ -14,6 +14,7 @@ export interface DonutFormat {
    showLabels: boolean;
    valueKey: string;
    layers: DonutLayer[];
+   layersNames?: string[];
    labels?: {
       [name: string]: string;
    };

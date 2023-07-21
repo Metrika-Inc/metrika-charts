@@ -1,13 +1,13 @@
 import React from 'react';
 import { ComponentStory, ComponentMeta } from '@storybook/react';
 import { ChartWrapper } from '../_shared/ChartWrapper';
-import { DonutData, DonutFormat, MetrikaDonut } from '@metrika/metrika-charts';
+import { DonutData, DonutFormat, MetrikaDonut, MetrikaDonutProps } from '@metrika/metrika-charts';
 import { mock1, mock2 } from './mocks';
 
-const Donut = (props: { data: DonutData; format: DonutFormat }) => {
+const Donut = (props: { data: DonutData; format: DonutFormat; engine?: MetrikaDonutProps['engine'] }) => {
    return (
       <ChartWrapper>
-         <MetrikaDonut engine={'elastic'} data={props.data} format={props.format} />
+         <MetrikaDonut engine={props.engine} data={props.data} format={props.format} />
       </ChartWrapper>
    );
 };
@@ -58,6 +58,29 @@ DonutLabelsElastic2.args = {
          initial_coin_offering: 'Initial coin offering',
          ethereum_foundation: 'Ethereum Foundation',
          early_contributors: 'Early contributors',
-      }
+      },
+   },
+};
+
+export const DonutEcharts = Template.bind({});
+DonutEcharts.storyName = 'Donut with-labels 2 (echarts)';
+DonutEcharts.args = {
+   engine: 'echarts',
+   data: mock2,
+   format: {
+      showLabels: true,
+      valueKey: 'value',
+      layers: [{ groupByKey: 'name' }],
+      layersNames: ['Tokens'],
+      colors: {
+         ethereum_foundation: '#A7CEE1',
+         initial_coin_offering: '#F99C9B',
+         early_contributors: '#C9B2D4',
+      },
+      labels: {
+         initial_coin_offering: 'Initial coin offering',
+         ethereum_foundation: 'Ethereum Foundation',
+         early_contributors: 'Early contributors',
+      },
    },
 };

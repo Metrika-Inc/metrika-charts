@@ -10,6 +10,7 @@ const baseChartTheme = {
 };
 
 export const metrikaTheme = {
+   name: 'metrika',
    data: {
       colors: MetrikaPalette,
    },
