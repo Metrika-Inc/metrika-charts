@@ -11,7 +11,8 @@
     "charts:start": "pnpm run --filter metrika-charts start",
     "storybook:start": "NODE_OPTIONS=--openssl-legacy-provider pnpm run --filter storybook start",
     "storybook:build": "pnpm run --filter storybook build",
-    "outdated" : "pnpm -r outdated"
+    "outdated" : "pnpm -r outdated",
+    "outdated:taze": "npx taze@latest -r"
   },
   "devDependencies": {
     "@typescript-eslint/eslint-plugin": "^5.58.0",

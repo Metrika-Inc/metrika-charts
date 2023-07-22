@@ -4,11 +4,11 @@ import { TooltipComponent, LegendComponent, LegendPlainComponent } from 'echarts
 import * as echarts from 'echarts/core';
 import { CanvasRenderer } from 'echarts/renderers';
 import ReactEChartsCore from 'echarts-for-react/lib/core';
-import { Opts } from 'echarts-for-react/src/types';
+import type { Opts } from 'echarts-for-react/src/types';
 import React, { useMemo } from 'react';
 import { useTheme } from '../../../../_shared';
 import { useResizeObserver } from '../../../../_shared/useResizeObserver';
-import { DonutProps } from '../../data';
+import type { DonutProps } from '../../data';
 
 echarts.use([TooltipComponent, PieChart, CanvasRenderer, LegendComponent, LegendPlainComponent]);
 
@@ -16,7 +16,7 @@ const defaultEchartsOpts: Opts = {
    renderer: 'canvas',
 };
 
-export const EchartsDonut: React.FC<DonutProps> = ({ data, format }) => {
+const EchartsDonut: React.FC<DonutProps> = ({ data, format }) => {
    const theme = useTheme();
    const [divRef, size] = useResizeObserver<HTMLDivElement>();
 
@@ -36,6 +36,7 @@ export const EchartsDonut: React.FC<DonutProps> = ({ data, format }) => {
 
    const chartOptions: EChartsOption = useMemo(
       () => ({
+         backgroundColor: 'transparent',
          tooltip: {
             trigger: 'item',
             formatter: serieName ? '{a} <br/><strong>{b}</strong>: {c} ({d}%)' : '<strong>{b}</strong>: {c} ({d}%)',
@@ -116,3 +117,5 @@ export const EchartsDonut: React.FC<DonutProps> = ({ data, format }) => {
       </div>
    );
 };
+
+export default EchartsDonut;
