@@ -31,4 +31,6 @@ export const metrikaTheme = {
    },
 } as const;
 
-export type Theme = typeof metrikaTheme;
+export type Theme = typeof metrikaTheme & {
+   name: string;
+};

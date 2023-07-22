@@ -38,7 +38,7 @@ export const EchartsDonut: React.FC<DonutProps> = ({ data, format }) => {
       () => ({
          tooltip: {
             trigger: 'item',
-            formatter: serieName ? '{a} <br/><b>{b}</b>: {c} ({d}%)' : '<b>{b}</b>: {c} ({d}%)',
+            formatter: serieName ? '{a} <br/><strong>{b}</strong>: {c} ({d}%)' : '<strong>{b}</strong>: {c} ({d}%)',
          },
          legend: {
             mainType: 'legend',
