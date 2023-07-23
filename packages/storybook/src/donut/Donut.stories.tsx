@@ -1,14 +1,29 @@
 import React from 'react';
 import { ComponentStory, ComponentMeta } from '@storybook/react';
 import { ChartWrapper } from '../_shared/ChartWrapper';
-import { DonutData, DonutFormat, MetrikaDonut, MetrikaDonutProps } from '@metrika/metrika-charts';
+import {
+   DonutData,
+   DonutFormat,
+   MetrikaDonut,
+   MetrikaDonutProps,
+   metrikaTheme,
+   metrikaThemeDark,
+   ThemeProvider,
+} from '@metrika/metrika-charts';
 import { mock1, mock2 } from './mocks';
 
-const Donut = (props: { data: DonutData; format: DonutFormat; engine?: MetrikaDonutProps['engine'] }) => {
+const Donut = (props: {
+   isDark?: boolean;
+   data: DonutData;
+   format: DonutFormat;
+   engine?: MetrikaDonutProps['engine'];
+}) => {
    return (
-      <ChartWrapper>
-         <MetrikaDonut engine={props.engine} data={props.data} format={props.format} />
-      </ChartWrapper>
+      <ThemeProvider value={props.isDark ? metrikaThemeDark : metrikaTheme}>
+         <ChartWrapper>
+            <MetrikaDonut engine={props.engine} data={props.data} format={props.format} />
+         </ChartWrapper>
+      </ThemeProvider>
    );
 };
 
@@ -17,38 +32,46 @@ export default {
    component: Donut,
 } as ComponentMeta<typeof Donut>;
 
-const Template: ComponentStory<typeof Donut> = (props) => <Donut {...props} />;
+const DonutTemplate: ComponentStory<typeof Donut> = (props) => {
+   return <Donut {...props} />;
+};
 
-export const DonutElastic = Template.bind({});
+export const DonutElastic = DonutTemplate.bind({});
 DonutElastic.storyName = 'Donut no-labels (elastic)';
 DonutElastic.args = {
+   engine: 'elastic',
    data: mock1,
    format: {
       showLabels: false,
-      valueKey: 'transactions',
-      layers: [{ groupByKey: 'sender_acct' }, { groupByKey: 'receiver_acct' }],
+      layers: [
+         { sliceKey: 'sender_acct', valueKey: 'transactions' },
+         { sliceKey: 'receiver_acct', valueKey: 'transactions' },
+      ],
    },
 };
 
-export const DonutLabelsElastic = Template.bind({});
+export const DonutLabelsElastic = DonutTemplate.bind({});
 DonutLabelsElastic.storyName = 'Donut with-labels (elastic)';
 DonutLabelsElastic.args = {
+   engine: 'elastic',
    data: mock1,
    format: {
       showLabels: true,
-      valueKey: 'transactions',
-      layers: [{ groupByKey: 'sender_acct' }, { groupByKey: 'receiver_acct' }],
+      layers: [
+         { sliceKey: 'sender_acct', valueKey: 'transactions' },
+         { sliceKey: 'receiver_acct', valueKey: 'transactions' },
+      ],
    },
 };
 
-export const DonutLabelsElastic2 = Template.bind({});
-DonutLabelsElastic2.storyName = 'Donut with-labels 2 (elastic)';
-DonutLabelsElastic2.args = {
+export const DonutElastic3 = DonutTemplate.bind({});
+DonutElastic3.storyName = 'Donut Tokens (elastic)';
+DonutElastic3.args = {
    data: mock2,
    format: {
+      engine: 'elastic',
       showLabels: true,
-      valueKey: 'value',
-      layers: [{ groupByKey: 'name' }],
+      layers: [{ sliceKey: 'name', valueKey: 'value', layerName: 'Tokens' }],
       colors: {
          ethereum_foundation: '#A7CEE1',
          initial_coin_offering: '#F99C9B',
@@ -62,21 +85,47 @@ DonutLabelsElastic2.args = {
    },
 };
 
-export const DonutEcharts = Template.bind({});
-DonutEcharts.storyName = 'Donut with-labels 2 (echarts)';
-DonutEcharts.args = {
-   engine: 'echarts',
+
+export const DonutEcharts1 = DonutTemplate.bind({});
+DonutEcharts1.storyName = 'Donut Tokens (echarts-canvas)';
+DonutEcharts1.args = {
    data: mock2,
    format: {
+      engine: 'echarts',
+      renderer: 'canvas',
       showLabels: true,
-      valueKey: 'value',
-      layers: [{ groupByKey: 'name' }],
-      layersNames: ['Tokens'],
+      layers: [{ sliceKey: 'name', valueKey: 'value', layerName: 'Tokens' }],
       colors: {
          ethereum_foundation: '#A7CEE1',
          initial_coin_offering: '#F99C9B',
          early_contributors: '#C9B2D4',
       },
+      labels: {
+         initial_coin_offering: 'Initial Coin Offering',
+         ethereum_foundation: 'Ethereum Foundation',
+         early_contributors: 'Early Contributors',
+      },
+   },
+};
+
+DonutEcharts1.argTypes = {
+   isDark: {
+      control: {
+         type: 'boolean',
+      },
+   },
+};
+
+export const DonutEcharts2 = DonutTemplate.bind({});
+DonutEcharts2.storyName = 'Donut Tokens (echarts-svg)';
+DonutEcharts2.args = {
+   isDark:false,
+   data: mock2,
+   format: {
+      engine: 'echarts',
+      renderer: 'svg',
+      showLabels: true,
+      layers: [{ sliceKey: 'name', valueKey: 'value', layerName: 'Tokens' }],
       labels: {
          initial_coin_offering: 'Initial coin offering',
          ethereum_foundation: 'Ethereum Foundation',
@@ -84,3 +133,13 @@ DonutEcharts.args = {
       },
    },
 };
+
+DonutEcharts2.argTypes = {
+   isDark: {
+      control: {
+         type: 'boolean',
+      },
+   },
+};
+
+

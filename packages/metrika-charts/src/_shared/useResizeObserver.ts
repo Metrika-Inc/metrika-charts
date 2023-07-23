@@ -1,11 +1,11 @@
-import React, { useEffect, useRef, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 
 interface Size {
    width: number;
    height: number;
 }
 
-export function useResizeObserver<T extends HTMLElement>(): [React.RefObject<T>, Size] {
+export function useResizeObserver<T extends HTMLElement>() {
    const ref = useRef<T>(null);
    const [size, setSize] = useState<Size>({ width: 0, height: 0 });
 
@@ -25,5 +25,8 @@ export function useResizeObserver<T extends HTMLElement>(): [React.RefObject<T>,
       };
    }, []);
 
-   return [ref, size];
+   return {
+      ref,
+      ...size,
+   };
 }

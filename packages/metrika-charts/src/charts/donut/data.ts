@@ -7,19 +7,30 @@ export type Slice = {
 export type DonutData = Slice[];
 
 export interface DonutLayer {
-   groupByKey: string;
+   layerName?: string;
+   sliceKey: string;
+   valueKey: string;
 }
 
+export type DonutEngine = 'elastic' | 'echarts';
+
 export interface DonutFormat {
+   engine?: DonutEngine;
+   renderer?: 'svg' | 'canvas';
+   //format
    showLabels: boolean;
-   valueKey: string;
    layers: DonutLayer[];
-   layersNames?: string[];
+   // override slices names
    labels?: {
-      [name: string]: string;
+      [sliceKey: string]: string;
    };
+   // override slices colors
    colors?: {
-      [name: string]: string;
+      [sliceKey: string]: string;
+   };
+   // override slices colors for dark theme
+   colorsDark?: {
+      [sliceKey: string]: string;
    };
 }
 

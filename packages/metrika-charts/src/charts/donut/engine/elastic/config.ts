@@ -7,7 +7,7 @@ import { DonutFormat } from '../../data';
 export function getElasticDonutTheme(theme: Theme): PartialTheme {
    return {
       background: {
-         color: theme.chart.donut.background.color,
+         color: theme.base.background.color,
       },
       legend: {
          margin: 16,
@@ -35,11 +35,11 @@ export function getElasticDonutConfig(theme: Theme, format: DonutFormat): Recurs
          maximumSection: format.showLabels ? 2 : Infinity, // no labels
          maxCount: 0,
       },
-      fontFamily: theme.chart.donut.fontFamily,
+      fontFamily: theme.base.fontFamily,
       fillLabel: {
          valueFormatter: (d: number) => d.toString(),
          fontStyle: 'normal',
-         fontFamily: theme.chart.donut.fontFamily,
+         fontFamily: theme.base.fontFamily,
       },
       margin: { top: 0.1, bottom: 0.1, left: 0.1, right: 0.1 },
       minFontSize: 1,

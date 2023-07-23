@@ -16,7 +16,7 @@ const ElasticDonut: React.FC<DonutProps> = ({ data, format }) => {
    const layers = useMemo(
       () =>
          format.layers.map((l) => ({
-            groupByRollup: (d: Datum) => d[l.groupByKey],
+            groupByRollup: (d: Datum) => d[l.sliceKey],
             nodeLabel: (key: PrimitiveValue) => {
                const keyString = `${key}`;
                return format.labels && format.labels[keyString] ? format.labels[keyString] : keyString;
@@ -28,7 +28,6 @@ const ElasticDonut: React.FC<DonutProps> = ({ data, format }) => {
                   if (format.colors && format.colors[d['dataName']]) {
                      return format.colors[d['dataName']];
                   }
-
                   // pick color from color palette based on mean angle - rather distinct colors in the inner ring
                   return indexInterpolatedFillColor(interpolatorCET2s)(d, (d.x0 + d.x1) / 2 / (2 * Math.PI), []);
                },
@@ -37,7 +36,10 @@ const ElasticDonut: React.FC<DonutProps> = ({ data, format }) => {
       [format.colors, format.labels, format.layers],
    );
 
-   const valueAccessor = useCallback((d: Datum) => d[format.valueKey] as number, [format.valueKey]);
+   const valueAccessor = useCallback(
+      (d: Datum) => (format.layers[0].valueKey ? (d[format.layers[0].valueKey] as number) : 0),
+      [format.layers],
+   );
 
    return (
       <Chart>
