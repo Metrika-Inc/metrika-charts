@@ -114,6 +114,7 @@ importers:
       '@storybook/addon-links': ^7.1.0
       '@storybook/react': ^7.1.0
       '@storybook/react-webpack5': ^7.1.0
+      '@storybook/types': ^7.1.0
       dayjs: ^1.11.9
       react: ^17.0.2
       react-dom: ^17.0.2
@@ -127,6 +128,7 @@ importers:
       '@storybook/addon-essentials': 7.1.0_sfoxds7t5ydpegc3knd667wn6m
       '@storybook/addon-links': 7.1.0_sfoxds7t5ydpegc3knd667wn6m
       '@storybook/react': 7.1.0_6ckmbbxhq6wma62anlwn3mqgfu
+      '@storybook/types': 7.1.0
       dayjs: 1.11.9
       react: 17.0.2
       react-dom: 17.0.2_react@17.0.2

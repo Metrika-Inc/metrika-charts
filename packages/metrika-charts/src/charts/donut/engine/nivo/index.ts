@@ -1,1 +1,2 @@
-export * from './NivoDonut';
+import React from 'react';
+export const NivoDonut = React.lazy(() => import('./NivoDonut'));

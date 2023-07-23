@@ -1,5 +1,5 @@
 import React from 'react';
-import { ComponentStory, ComponentMeta } from '@storybook/react';
+import { StoryFn, Meta } from '@storybook/react';
 import { MetrikaGauge, MetrikaGaugeProps } from '@metrika/metrika-charts';
 import { ChartWrapper } from '../_shared/ChartWrapper';
 
@@ -14,9 +14,9 @@ const Gauge: React.FC<MetrikaGaugeProps> = (props) => {
 export default {
    title: 'Charts/Gauge',
    component: Gauge,
-} as ComponentMeta<typeof Gauge>;
+} as Meta<typeof Gauge>;
 
-const Template: ComponentStory<typeof Gauge> = (args: MetrikaGaugeProps) => <Gauge {...args} />;
+const Template: StoryFn<typeof Gauge> = (args: MetrikaGaugeProps) => <Gauge {...args} />;
 
 export const GaugeElastic1 = Template.bind({});
 export const GaugeElastic2 = Template.bind({});
@@ -36,12 +36,12 @@ GaugeElasticBlue.args = {
       valueUnit: 'percent',
       base: 0,
       target: 0.1,
-      targetFillColor:'transparent',
+      targetFillColor: 'transparent',
       bands: [{ value: 0.1 }],
-      ticks: [0, 0.025,0.05, 0.075, 0.1],
+      ticks: [0, 0.025, 0.05, 0.075, 0.1],
       type: 'blue',
    } as MetrikaGaugeProps['format'],
-   data: { actual: 0.7, bottomLabel:'96 Gb Ram'} as MetrikaGaugeProps['data'],
+   data: { actual: 0.7, bottomLabel: '96 Gb Ram' } as MetrikaGaugeProps['data'],
 };
 
 GaugeElastic1.storyName = 'Gauge Ok (elastic)';
@@ -54,7 +54,7 @@ GaugeElastic1.args = {
       ticks: [0, 4000, 8000, 12000, 16000],
       type: 'ok',
    } as MetrikaGaugeProps['format'],
-   data: { actual: 3800} as MetrikaGaugeProps['data'],
+   data: { actual: 3800 } as MetrikaGaugeProps['data'],
 };
 
 GaugeElastic2.storyName = 'Gauge Warning (elastic)';
@@ -91,7 +91,7 @@ GaugeElastic4.args = {
       base: 0,
       bands: [{ value: 100 }],
       ticks: [0, 25, 50, 75, 100],
-      typeThresholds: [0,80,90],
+      typeThresholds: [0, 80, 90],
       type: 'dynamic',
    } as MetrikaGaugeProps['format'],
    data: { actual: 40 } as MetrikaGaugeProps['data'],
@@ -104,8 +104,8 @@ GaugeElastic5.args = {
       valueUnit: 'percent',
       base: 0,
       bands: [{ value: 1 }],
-      ticks: [0, 0.25, 0.50, 0.75, 1],
-      typeThresholds: [0,0.80,0.90],
+      ticks: [0, 0.25, 0.5, 0.75, 1],
+      typeThresholds: [0, 0.8, 0.9],
       type: 'dynamic',
    } as MetrikaGaugeProps['format'],
    data: { actual: 0.85 } as MetrikaGaugeProps['data'],
@@ -118,8 +118,8 @@ GaugeElastic6.args = {
       valueUnit: 'percent',
       base: 0,
       bands: [{ value: 1 }],
-      ticks: [0, 0.25, 0.50, 0.75, 1],
-      typeThresholds: [0,0.80,0.90],
+      ticks: [0, 0.25, 0.5, 0.75, 1],
+      typeThresholds: [0, 0.8, 0.9],
       type: 'dynamic',
    } as MetrikaGaugeProps['format'],
    data: { actual: 0.9566 } as MetrikaGaugeProps['data'],
@@ -134,7 +134,7 @@ GaugeElastic7.args = {
       base: 0,
       bands: [{ value: 100 }],
       ticks: [0, 25, 50, 75, 100],
-      typeThresholds: [0,80,90],
+      typeThresholds: [0, 80, 90],
       type: 'dynamic-reverse',
    } as MetrikaGaugeProps['format'],
    data: { actual: 40 } as MetrikaGaugeProps['data'],
@@ -147,8 +147,8 @@ GaugeElastic8.args = {
       valueUnit: 'percent',
       base: 0,
       bands: [{ value: 1 }],
-      ticks: [0, 0.25, 0.50, 0.75, 1],
-      typeThresholds: [0,0.80,0.90],
+      ticks: [0, 0.25, 0.5, 0.75, 1],
+      typeThresholds: [0, 0.8, 0.9],
       type: 'dynamic-reverse',
    } as MetrikaGaugeProps['format'],
    data: { actual: 0.85 } as MetrikaGaugeProps['data'],
@@ -161,8 +161,8 @@ GaugeElastic9.args = {
       valueUnit: 'percent',
       base: 0,
       bands: [{ value: 1 }],
-      ticks: [0, 0.25, 0.50, 0.75, 1],
-      typeThresholds: [0,0.80,0.90],
+      ticks: [0, 0.25, 0.5, 0.75, 1],
+      typeThresholds: [0, 0.8, 0.9],
       type: 'dynamic-reverse',
    } as MetrikaGaugeProps['format'],
    data: { actual: 0.9566 } as MetrikaGaugeProps['data'],

@@ -1,5 +1,5 @@
 import React from 'react';
-import { ComponentStory, ComponentMeta } from '@storybook/react';
+import { StoryFn, Meta } from '@storybook/react';
 import { MetrikaLineBarArea } from '@metrika/metrika-charts';
 import { LineBarMockArea, LineBarMockArea2, LineBarMockArea3 } from './mocks';
 import { ChartWrapper } from '../_shared/ChartWrapper';
@@ -16,28 +16,28 @@ const Area: React.FC<LineBarAreaProps> = (props: LineBarAreaProps) => {
 export default {
    title: 'Charts/Area',
    component: Area,
-} as ComponentMeta<typeof Area>;
+} as Meta<typeof Area>;
 
-const Template: ComponentStory<typeof Area> = (args) => <Area {...args} />;
+const Template: StoryFn<typeof Area> = (args) => <Area {...args} />;
 
 export const AreaElastic1 = Template.bind({});
 
 AreaElastic1.storyName = 'Area stacked % (elastic)';
-AreaElastic1.args={
+AreaElastic1.args = {
    format: LineBarMockArea.format,
-   data: LineBarMockArea.data
-}
+   data: LineBarMockArea.data,
+};
 
 export const AreaElastic2 = Template.bind({});
-AreaElastic2.args={
+AreaElastic2.args = {
    format: LineBarMockArea2.format,
-   data: LineBarMockArea2.data
-}
+   data: LineBarMockArea2.data,
+};
 AreaElastic2.storyName = 'Area stacked (elastic)';
 
 export const AreaElastic3 = Template.bind({});
-AreaElastic3.args={
+AreaElastic3.args = {
    format: LineBarMockArea3.format,
-   data: LineBarMockArea3.data
-}
+   data: LineBarMockArea3.data,
+};
 AreaElastic3.storyName = 'Area simple (elastic)';

@@ -12,7 +12,7 @@ export interface DonutLayer {
    valueKey: string;
 }
 
-export type DonutEngine = 'elastic' | 'echarts';
+export type DonutEngine = 'elastic' | 'echarts' | 'nivo';
 
 export interface DonutFormat {
    engine?: DonutEngine;

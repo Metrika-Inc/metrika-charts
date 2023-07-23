@@ -1,14 +1,14 @@
 import React from 'react';
-import { ComponentStory, ComponentMeta } from '@storybook/react';
+import { StoryFn, Meta } from '@storybook/react';
 import { MetrikaLineBarAreaProps, MetrikaLineBarArea } from '@metrika/metrika-charts';
 import { LineBarMock1 } from './mocks';
 import { ChartWrapper } from '../_shared/ChartWrapper';
 
-const LineEvents: React.FC<{ engine: MetrikaLineBarAreaProps["engine"] }> = ({ engine }) => {
+const LineEvents: React.FC<{ engine: MetrikaLineBarAreaProps['engine'] }> = ({ engine }) => {
    return (
       <>
          <ChartWrapper>
-            <MetrikaLineBarArea syncTooltipEnabled syncTooltipVisible engine={engine}  {...LineBarMock1} />
+            <MetrikaLineBarArea syncTooltipEnabled syncTooltipVisible engine={engine} {...LineBarMock1} />
          </ChartWrapper>
          <ChartWrapper>
             <MetrikaLineBarArea syncTooltipEnabled syncTooltipVisible engine={engine} {...LineBarMock1} />
@@ -26,9 +26,9 @@ export default {
          control: { type: 'radio' },
       },
    },
-} as ComponentMeta<typeof LineEvents>;
+} as Meta<typeof LineEvents>;
 
-const Template: ComponentStory<typeof LineEvents> = (args) => <LineEvents {...args} />;
+const Template: StoryFn<typeof LineEvents> = (args) => <LineEvents {...args} />;
 
 export const SyncTooltips = Template.bind({});
 SyncTooltips.args = {

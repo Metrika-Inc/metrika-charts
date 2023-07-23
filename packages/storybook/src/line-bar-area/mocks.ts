@@ -602,24 +602,24 @@ const dataMockArea: LineBarAreaData = [
 export const LineBarMockArea: LineBarAreaProps = {
    format: {
       domainUnit: 'datetime',
-      seriesId: ['0.0.3', '0.0.4','Rest of Network'],
+      seriesId: ['0.0.3', '0.0.4', 'Rest of Network'],
       seriesInfo: {
          '0.0.3': {
             type: 'area',
-            subType: "stacked",
-            stackMode: "percentage",
+            subType: 'stacked',
+            stackMode: 'percentage',
             name: '0.0.3',
          },
          '0.0.4': {
             type: 'area',
-            subType: "stacked",
-            stackMode: "percentage",
+            subType: 'stacked',
+            stackMode: 'percentage',
             name: '0.0.4',
          },
          'Rest of Network': {
             type: 'area',
-            subType: "stacked",
-            stackMode: "percentage",
+            subType: 'stacked',
+            stackMode: 'percentage',
             name: 'Rest of Network',
          },
       },
@@ -640,21 +640,21 @@ export const LineBarMockArea: LineBarAreaProps = {
 export const LineBarMockArea2: LineBarAreaProps = {
    format: {
       domainUnit: 'datetime',
-      seriesId: ['0.0.3', '0.0.4','Rest of Network'],
+      seriesId: ['0.0.3', '0.0.4', 'Rest of Network'],
       seriesInfo: {
          '0.0.3': {
             type: 'area',
-            subType: "stacked",
+            subType: 'stacked',
             name: '0.0.3',
          },
          '0.0.4': {
             type: 'area',
-            subType: "stacked",
+            subType: 'stacked',
             name: '0.0.4',
          },
          'Rest of Network': {
             type: 'area',
-            subType: "stacked",
+            subType: 'stacked',
             name: 'Rest of Network',
          },
       },
@@ -675,7 +675,7 @@ export const LineBarMockArea2: LineBarAreaProps = {
 export const LineBarMockArea3: LineBarAreaProps = {
    format: {
       domainUnit: 'datetime',
-      seriesId: ['0.0.3', '0.0.4','Rest of Network'],
+      seriesId: ['0.0.3', '0.0.4', 'Rest of Network'],
       seriesInfo: {
          '0.0.3': {
             type: 'area',

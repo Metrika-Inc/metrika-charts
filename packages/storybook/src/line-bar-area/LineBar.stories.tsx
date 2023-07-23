@@ -1,10 +1,10 @@
 import React from 'react';
-import { ComponentStory, ComponentMeta } from '@storybook/react';
+import { StoryFn, Meta } from '@storybook/react';
 import { MetrikaLineBarArea, MetrikaLineBarAreaProps } from '@metrika/metrika-charts';
 import { LineBarMock4 } from './mocks';
 import { ChartWrapper } from '../_shared/ChartWrapper';
 
-const LineBar: React.FC<{ engine: MetrikaLineBarAreaProps["engine"] }> = ({ engine }) => {
+const LineBar: React.FC<{ engine: MetrikaLineBarAreaProps['engine'] }> = ({ engine }) => {
    return (
       <ChartWrapper>
          <MetrikaLineBarArea engine={engine} {...LineBarMock4} />
@@ -12,13 +12,12 @@ const LineBar: React.FC<{ engine: MetrikaLineBarAreaProps["engine"] }> = ({ engi
    );
 };
 
-
 export default {
    title: 'Charts/LineBar',
    component: LineBar,
-} as ComponentMeta<typeof LineBar>;
+} as Meta<typeof LineBar>;
 
-const Template: ComponentStory<typeof LineBar> = () => <LineBar engine={'elastic'} />;
+const Template: StoryFn<typeof LineBar> = () => <LineBar engine={'elastic'} />;
 
 export const LineBarElastic = Template.bind({});
 LineBarElastic.args = {};

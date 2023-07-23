@@ -1,5 +1,5 @@
 import React from 'react';
-import { ComponentStory, ComponentMeta } from '@storybook/react';
+import { StoryFn, Meta } from '@storybook/react';
 import { MetrikaLineBarArea } from '@metrika/metrika-charts';
 import { LineBarMock2, LineBarMock3 } from './mocks';
 import { ChartWrapper } from '../_shared/ChartWrapper';
@@ -21,9 +21,9 @@ const BarGrouped = () => (
 export default {
    title: 'Charts/Bar',
    component: Bar,
-} as ComponentMeta<typeof Bar>;
+} as Meta<typeof Bar>;
 
-const Template: ComponentStory<typeof Bar> = () => <Bar />;
+const Template: StoryFn<typeof Bar> = () => <Bar />;
 
 export const BarElastic = Template.bind({});
 BarElastic.storyName = 'Bar Stacked (elastic)';

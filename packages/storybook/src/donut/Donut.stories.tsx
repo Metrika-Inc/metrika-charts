@@ -1,5 +1,5 @@
 import React from 'react';
-import { ComponentStory, ComponentMeta } from '@storybook/react';
+import { StoryFn, Meta } from '@storybook/react';
 import { ChartWrapper } from '../_shared/ChartWrapper';
 import {
    DonutData,
@@ -30,9 +30,9 @@ const Donut = (props: {
 export default {
    title: 'Charts/Donut',
    component: Donut,
-} as ComponentMeta<typeof Donut>;
+} as Meta<typeof Donut>;
 
-const DonutTemplate: ComponentStory<typeof Donut> = (props) => {
+const DonutTemplate: StoryFn<typeof Donut> = (props) => {
    return <Donut {...props} />;
 };
 
@@ -85,7 +85,6 @@ DonutElastic3.args = {
    },
 };
 
-
 export const DonutEcharts1 = DonutTemplate.bind({});
 DonutEcharts1.storyName = 'Donut Tokens (echarts-canvas)';
 DonutEcharts1.args = {
@@ -119,7 +118,7 @@ DonutEcharts1.argTypes = {
 export const DonutEcharts2 = DonutTemplate.bind({});
 DonutEcharts2.storyName = 'Donut Tokens (echarts-svg)';
 DonutEcharts2.args = {
-   isDark:false,
+   isDark: false,
    data: mock2,
    format: {
       engine: 'echarts',
@@ -141,5 +140,3 @@ DonutEcharts2.argTypes = {
       },
    },
 };
-
-

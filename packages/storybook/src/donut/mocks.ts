@@ -29,5 +29,3 @@ export const mock2 = [
    { name: 'ethereum_foundation', value: 0.0848 },
    { name: 'early_contributors', value: 0.082 },
 ];
-
-

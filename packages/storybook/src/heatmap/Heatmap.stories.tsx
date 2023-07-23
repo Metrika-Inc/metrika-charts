@@ -1,5 +1,5 @@
 import React from 'react';
-import { ComponentStory, ComponentMeta } from '@storybook/react';
+import { StoryFn, Meta } from '@storybook/react';
 import { MetrikaHeatmap } from '@metrika/metrika-charts';
 import { mock } from './mocks';
 import { ChartWrapper } from '../_shared/ChartWrapper';
@@ -7,9 +7,9 @@ import { ChartWrapper } from '../_shared/ChartWrapper';
 export default {
    title: 'Charts/Heatmap',
    component: MetrikaHeatmap,
-} as ComponentMeta<typeof MetrikaHeatmap>;
+} as Meta<typeof MetrikaHeatmap>;
 
-const Template: ComponentStory<typeof MetrikaHeatmap> = () => (
+const Template: StoryFn<typeof MetrikaHeatmap> = () => (
    <ChartWrapper>
       <MetrikaHeatmap engine={'elastic'} {...mock} />
    </ChartWrapper>
