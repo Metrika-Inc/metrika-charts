@@ -25,8 +25,7 @@
     "diagnostics": false,
     "sourceMap": true,
     "strictNullChecks": true,
-    "traceResolution": false,
-    "watch": false
+    "traceResolution": false
   },
   "include": ["./src"],
   "exclude": ["node_modules","**/*.test.ts"]

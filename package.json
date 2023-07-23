@@ -11,22 +11,23 @@
     "charts:start": "pnpm run --filter metrika-charts start",
     "storybook:start": "NODE_OPTIONS=--openssl-legacy-provider pnpm run --filter storybook start",
     "storybook:build": "pnpm run --filter storybook build",
-    "outdated" : "pnpm -r outdated",
+    "outdated": "pnpm -r outdated",
     "outdated:taze": "npx taze@latest -r"
   },
   "devDependencies": {
-    "@typescript-eslint/eslint-plugin": "^5.58.0",
-    "@typescript-eslint/parser": "^5.58.0",
-    "eslint": "^8.38.0",
-    "eslint-watch": "^8.0.0",
+    "@typescript-eslint/eslint-plugin": "^5.62.0",
+    "@typescript-eslint/parser": "^5.62.0",
+    "eslint": "^8.45.0",
     "eslint-config-prettier": "^8.8.0",
     "eslint-config-react-app": "^7.0.1",
     "eslint-plugin-import": "^2.27.5",
     "eslint-plugin-jsx-a11y": "^6.7.1",
-    "eslint-plugin-prettier": "^4.2.1",
-    "eslint-plugin-react": "^7.32.2",
+    "eslint-plugin-prettier": "^5.0.0",
+    "eslint-plugin-react": "^7.33.0",
     "eslint-plugin-react-hooks": "^4.6.0",
-    "prettier": "^2.8.7",
-    "typescript": "^5.0.4"
+    "eslint-plugin-storybook": "^0.6.13",
+    "eslint-watch": "^8.0.0",
+    "prettier": "^3.0.0",
+    "typescript": "^5.1.6"
   }
 }

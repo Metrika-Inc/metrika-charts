@@ -3,21 +3,21 @@
   "version": "0.0.1",
   "license": "Apache-2.0",
   "scripts": {
-    "start": "start-storybook -p 6006",
-    "build": "build-storybook"
+    "start": "storybook dev -p 6006",
+    "build": "storybook build"
   },
   "dependencies": {
+    "@babel/core": "^7.22.9",
     "@metrika/elastic-charts": "^31.7.5",
     "@metrika/metrika-charts": "workspace:*",
-    "@babel/core": "^7.21.4",
-    "@storybook/addon-actions": "^6.5.9",
-    "@storybook/addon-essentials": "^6.5.9",
-    "@storybook/addon-links": "^6.5.9",
-    "@storybook/react": "^6.5.9",
-    "babel-loader": "^9.1.2",
+    "@storybook/addon-actions": "^7.1.0",
+    "@storybook/addon-essentials": "^7.1.0",
+    "@storybook/addon-links": "^7.1.0",
+    "@storybook/react": "^7.1.0",
+    "dayjs": "^1.11.9",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
-    "typescript": "^5.0.4"
+    "typescript": "^5.1.6"
   },
   "browserslist": {
     "production": [
@@ -30,5 +30,12 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "@babel/preset-env": "^7.22.9",
+    "@babel/preset-react": "^7.22.5",
+    "@babel/preset-typescript": "^7.22.5",
+    "@storybook/react-webpack5": "^7.1.0",
+    "storybook": "^7.1.0"
   }
 }
