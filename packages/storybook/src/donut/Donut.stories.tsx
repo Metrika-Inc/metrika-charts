@@ -140,3 +140,64 @@ DonutEcharts2.argTypes = {
       },
    },
 };
+
+
+export const DonutNivo1 = DonutTemplate.bind({});
+DonutNivo1.storyName = 'Donut Tokens (nivo-canvas)';
+DonutNivo1.args = {
+   isDark: false,
+   data: mock2,
+   format: {
+      engine: 'nivo',
+      renderer: 'canvas',
+      showLabels: true,
+      layers: [{ sliceKey: 'name', valueKey: 'value', layerName: 'Tokens' }],
+      labels: {
+         initial_coin_offering: 'Initial coin offering',
+         ethereum_foundation: 'Ethereum Foundation',
+         early_contributors: 'Early contributors',
+      },
+      colors: {
+         ethereum_foundation: '#A7CEE1',
+         initial_coin_offering: '#F99C9B',
+         early_contributors: '#C9B2D4',
+      },
+   },
+};
+DonutNivo1.argTypes = {
+   isDark: {
+      control: {
+         type: 'boolean',
+      },
+   },
+};
+
+export const DonutNivo2 = DonutTemplate.bind({});
+DonutNivo2.storyName = 'Donut Tokens (nivo-svg)';
+DonutNivo2.args = {
+   isDark: false,
+   data: mock2,
+   format: {
+      engine: 'nivo',
+      renderer: 'svg',
+      showLabels: true,
+      layers: [{ sliceKey: 'name', valueKey: 'value', layerName: 'Tokens' }],
+      labels: {
+         initial_coin_offering: 'Initial coin offering',
+         ethereum_foundation: 'Ethereum Foundation',
+         early_contributors: 'Early contributors',
+      },
+      colors: {
+         ethereum_foundation: '#A7CEE1',
+         initial_coin_offering: '#F99C9B',
+         early_contributors: '#C9B2D4',
+      },
+   },
+};
+DonutNivo2.argTypes = {
+   isDark: {
+      control: {
+         type: 'boolean',
+      },
+   },
+};

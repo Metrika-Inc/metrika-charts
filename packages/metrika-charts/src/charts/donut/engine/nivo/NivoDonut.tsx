@@ -1,17 +1,10 @@
-import type { EChartsOption } from 'echarts';
-import { PieChart } from 'echarts/charts';
-import { TooltipComponent, LegendComponent, LegendPlainComponent } from 'echarts/components';
-import * as echarts from 'echarts/core';
-import { CanvasRenderer, SVGRenderer } from 'echarts/renderers';
-import type { PieDataItemOption } from 'echarts/types/src/chart/pie/PieSeries';
-import ReactEChartsCore from 'echarts-for-react/lib/core';
-import type { Opts } from 'echarts-for-react/src/types';
+import { ResponsivePie, ResponsivePieCanvas } from '@nivo/pie';
 import React, { useMemo } from 'react';
 import { useTheme } from '../../../../_shared';
+import { formatPercent } from '../../../../_shared/format/formatting';
 import { useResizeObserver } from '../../../../_shared/useResizeObserver';
 import type { DonutProps } from '../../data';
-
-echarts.use([TooltipComponent, PieChart, CanvasRenderer, SVGRenderer, LegendComponent, LegendPlainComponent]);
+import { getNivoTheme } from './nivoTheme';
 
 /**
  * Current implementation of Donut chart using Echarts - support only one layer
@@ -20,16 +13,15 @@ const NivoDonut: React.FC<DonutProps> = ({ data, format }) => {
    const theme = useTheme();
    const { ref: divRef, width, height } = useResizeObserver<HTMLDivElement>();
 
-   const currentData: PieDataItemOption[] = React.useMemo(() => {
+   const currentData = useMemo(() => {
       const colorObj = theme.isDark ? format.colorsDark || format.colors : format.colors;
 
       return format.layers.length > 0
          ? data.map((d) => ({
-              itemStyle: {
-                 color: colorObj ? colorObj[d[format.layers[0].sliceKey]] : undefined,
-              },
+              color: colorObj ? colorObj[d[format.layers[0].sliceKey]] : undefined,
               value: Number(d[format.layers[0].valueKey]),
-              name:
+              id: String(d[format.layers[0].sliceKey]),
+              label:
                  format.labels && format.labels[d[format.layers[0].sliceKey]]
                     ? format.labels[d[format.layers[0].sliceKey]]
                     : String(d[format.layers[0].sliceKey]),
@@ -37,93 +29,108 @@ const NivoDonut: React.FC<DonutProps> = ({ data, format }) => {
          : [];
    }, [data, format, theme.isDark]);
 
-   const serieName = format.layers.length > 0 ? format.layers[0].layerName || '' : '';
+   const PieElement = format.renderer === 'svg' ? ResponsivePie : ResponsivePieCanvas;
 
-   const chartOptions: EChartsOption = useMemo(
-      () => ({
-         backgroundColor: theme.base.background.color,
-         tooltip: {
-            trigger: 'item',
-            formatter: serieName ? '{a} <br/><strong>{b}</strong>: {c} ({d}%)' : '<strong>{b}</strong>: {c} ({d}%)',
-         },
-         legend: {
-            mainType: 'legend',
-            orient: 'horizontal',
-            align: 'auto',
-            itemGap: 16,
-            padding: 16,
-            textStyle: {
-               fontSize: 12,
-               fontWeight: 'normal',
-               fontFamily: theme.base.fontFamily,
-            },
-         },
-         percentPrecision: 2,
-         series: [
-            {
-               name: serieName,
-               type: 'pie',
-               radius: width > 0 && width < 480 ? ['33%', '50%'] : ['66%', '100%'],
-               avoidLabelOverlap: true,
-               label: {
-                  show: true,
-                  fontSize: 12,
-                  fontWeight: 'normal',
-                  fontFamily: theme.base.fontFamily,
-                  formatter: '{b}: {d}%',
-               },
-               emphasis: {
-                  label: {
-                     show: true,
-                     fontSize: 14,
-                     fontWeight: 'bold',
-                     fontFamily: theme.base.fontFamily,
-                  },
-               },
-               labelLine: {
-                  length: 16,
-               },
-               data: currentData,
-               left: 16,
-               top: 64,
-               right: 16,
-               bottom: 32,
-            },
-         ],
-      }),
-      [currentData, serieName, width, theme],
-   );
+   const currentTheme = useMemo(() => {
+      return getNivoTheme(theme, format);
+   }, [theme, format]);
 
-   const onEvents = useMemo(
-      () => ({
-         finished: (e) => {
-            //     console.log('finished', e);
-         },
-         rendered: (e) => {
-            //   console.log('rendered', e);
-         },
-      }),
-      [],
-   );
-
-   const chartOpts: Opts = useMemo(
-      () => ({
-         renderer: format.renderer || 'canvas',
-      }),
-      [format.renderer],
-   );
    return (
       <div style={{ height: '100%', width: '100%' }} ref={divRef}>
          {width > 0 && height > 0 ? (
-            <ReactEChartsCore
-               style={{ height: '100%', width: '100%' }}
-               echarts={echarts}
-               option={chartOptions}
-               notMerge={true}
-               lazyUpdate={true}
-               theme={theme.isDark ? 'dark' : undefined}
-               onEvents={onEvents}
-               opts={chartOpts}
+            <PieElement
+               theme={currentTheme}
+               valueFormat={(d) => formatPercent(Number(d))}
+               colors={{ datum: 'data.color' }}
+               data={currentData}
+               margin={{ top: 64, right: 64, bottom: 64, left: 64 }}
+               innerRadius={0.66}
+               padAngle={0.7}
+               cornerRadius={3}
+               activeOuterRadiusOffset={8}
+               borderWidth={1}
+               borderColor={{
+                  from: 'color',
+                  modifiers: [['darker', 0.2]],
+               }}
+               arcLinkLabelsSkipAngle={10}
+               arcLinkLabelsTextColor="#333333"
+               arcLinkLabelsThickness={2}
+               arcLinkLabelsColor={{ from: 'color' }}
+               arcLinkLabel={(d) => `${d.label}: ${d.formattedValue}`}
+               enableArcLabels={false}
+               arcLabelsSkipAngle={10}
+               arcLabelsTextColor={{
+                  from: 'color',
+                  modifiers: [['darker', 2]],
+               }}
+               defs={[
+                  {
+                     id: 'dots',
+                     type: 'patternDots',
+                     background: 'inherit',
+                     color: 'rgba(255, 255, 255, 0.3)',
+                     size: 4,
+                     padding: 1,
+                     stagger: true,
+                  },
+                  {
+                     id: 'lines',
+                     type: 'patternLines',
+                     background: 'inherit',
+                     color: 'rgba(255, 255, 255, 0.3)',
+                     rotation: -45,
+                     lineWidth: 6,
+                     spacing: 10,
+                  },
+               ]}
+               fill={
+                  [
+                     /*   {
+                     match: {
+                        id: 'early_contributors',
+                     },
+                     id: 'lines',
+                  },
+                  {
+                     match: {
+                        id: 'ethereum_foundation',
+                     },
+                     id: 'dots',
+                  },
+                  {
+                     match: {
+                        id: 'initial_coin_offering',
+                     },
+                     id: 'lines',
+                  },*/
+                  ]
+               }
+               legends={[
+                  {
+                     anchor: 'top',
+                     direction: 'row',
+                     justify: false,
+                     translateX: 0,
+                     translateY: -48,
+                     itemsSpacing: 16,
+                     itemWidth: 120,
+                     itemHeight: 18,
+                     itemTextColor: '#333333',
+                     itemDirection: 'left-to-right',
+                     itemOpacity: 1,
+                     symbolSize: 18,
+                     symbolShape: 'square',
+                     effects: [
+                        {
+                           on: 'hover',
+                           style: {
+                              itemTextColor: '#666666',
+                           },
+                        },
+                     ],
+                  },
+               ]}
             />
          ) : null}
       </div>
