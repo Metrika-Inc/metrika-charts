@@ -12,7 +12,7 @@ export interface DonutLayer {
    valueKey: string;
 }
 
-export type DonutEngine = 'elastic' | 'echarts' | 'nivo';
+export type DonutEngine = 'elastic' | 'echarts';
 
 export interface DonutFormat {
    engine?: DonutEngine;
@@ -21,17 +21,12 @@ export interface DonutFormat {
    showLabels: boolean;
    layers: DonutLayer[];
    // override slices names
-   labels?: {
-      [sliceKey: string]: string;
-   };
+   labels?: Record<string, string>;
    // override slices colors
-   colors?: {
-      [sliceKey: string]: string;
-   };
+   colors?: Record<string, string>;
    // override slices colors for dark theme
-   colorsDark?: {
-      [sliceKey: string]: string;
-   };
+   colorsDark?: Record<string, string>;
+   hideLegend?: boolean;
 }
 
 export interface DonutProps extends ChartCommonProps {

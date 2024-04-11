@@ -2,12 +2,12 @@ import React, { Suspense, SuspenseProps } from 'react';
 import { DonutEngine, DonutProps } from './data';
 import { EchartsDonut } from './engine/echarts';
 import { ElasticDonut } from './engine/elastic';
-import { NivoDonut } from './engine/nivo';
+//import { NivoDonut } from './engine/nivo';
 
 const engines: Record<DonutEngine, React.FC<DonutProps>> = {
    elastic: ElasticDonut,
    echarts: EchartsDonut,
-   nivo: NivoDonut,
+   //nivo: NivoDonut,
 };
 
 export interface MetrikaDonutProps extends DonutProps {

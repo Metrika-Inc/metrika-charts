@@ -46,18 +46,20 @@ const EchartsDonut: React.FC<DonutProps> = ({ data, format }) => {
             trigger: 'item',
             formatter: serieName ? '{a} <br/><strong>{b}</strong>: {c} ({d}%)' : '<strong>{b}</strong>: {c} ({d}%)',
          },
-         legend: {
-            mainType: 'legend',
-            orient: 'horizontal',
-            align: 'auto',
-            itemGap: 16,
-            padding: 16,
-            textStyle: {
-               fontSize: 12,
-               fontWeight: 'normal',
-               fontFamily: theme.base.fontFamily,
-            },
-         },
+         legend: format.hideLegend
+            ? undefined
+            : {
+                 mainType: 'legend',
+                 orient: 'horizontal',
+                 align: 'auto',
+                 itemGap: 16,
+                 padding: 16,
+                 textStyle: {
+                    fontSize: 12,
+                    fontWeight: 'normal',
+                    fontFamily: theme.base.fontFamily,
+                 },
+              },
          percentPrecision: 2,
          series: [
             {
