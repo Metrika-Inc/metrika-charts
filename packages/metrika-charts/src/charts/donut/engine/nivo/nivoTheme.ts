@@ -5,7 +5,9 @@ import { DonutFormat } from '../../data';
 export function getNivoTheme(metrikaTheme: Theme, format: DonutFormat): NivoTheme {
    return {
       background: 'transparent',
-      textColor: '#333333',
+      text: {
+         color: '#333333',
+      },
       axis: {
          domain: {
             line: {
