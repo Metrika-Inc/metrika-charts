@@ -14,6 +14,11 @@
     "outdated": "pnpm -r outdated",
     "outdated:taze": "npx taze@latest -r"
   },
+  "pnpm": {
+    "overrides": {
+      "d3-color": "3.1.0"
+    }
+  },
   "devDependencies": {
     "@typescript-eslint/eslint-plugin": "^5.62.0",
     "@typescript-eslint/parser": "^5.62.0",
