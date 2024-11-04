@@ -92,7 +92,7 @@ DonutEcharts2.argTypes = {
    },
 };
 
-export const DonutNivo2 = DonutTemplate.bind({});
+/*export const DonutNivo2 = DonutTemplate.bind({});
 DonutNivo2.storyName = 'Tokens (nivo-svg)';
 DonutNivo2.args = {
    isDark: false,
@@ -120,9 +120,9 @@ DonutNivo2.argTypes = {
          type: 'boolean',
       },
    },
-};
+};*/
 
-export const DonutNivo1 = DonutTemplate.bind({});
+/*export const DonutNivo1 = DonutTemplate.bind({});
 DonutNivo1.storyName = 'Tokens (nivo-canvas)';
 DonutNivo1.args = {
    isDark: false,
@@ -150,7 +150,7 @@ DonutNivo1.argTypes = {
          type: 'boolean',
       },
    },
-};
+};*/
 
 export const DonutElastic3 = DonutTemplate.bind({});
 DonutElastic3.storyName = 'Tokens (elastic)';

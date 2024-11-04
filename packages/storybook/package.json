@@ -18,7 +18,7 @@
     "dayjs": "^1.11.9",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
-    "typescript": "^5.1.6"
+    "typescript": "^5.4.5"
   },
   "browserslist": {
     "production": [
